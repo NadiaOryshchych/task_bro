@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', function () {
-   'use script';
+   'use strict';
    
    let app = document.querySelector('.app'),
        boxWrap = document.querySelector('#box-wrap'),
