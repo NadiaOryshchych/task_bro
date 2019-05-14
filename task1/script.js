@@ -16,13 +16,12 @@ window.addEventListener('DOMContentLoaded', function () {
          boxes[i].addEventListener('mouseenter', function() {
             let boxRows = document.querySelectorAll('.box-row');
             if (boxRows.length > 1) {
-               minusShow();
-               // minusRow.style.display = 'flex';
+               minusRow.style.display = 'flex';
                minusRow.style.top = this.offsetTop + 'px';
             }
             let boxCol = document.querySelectorAll('.box-row .box:nth-child(2)');
             if (boxCol.length != 0) {
-               minusShow();
+               minusCol.style.display = 'flex';
                minusCol.style.left = this.offsetLeft + 'px ';
             }
          });
