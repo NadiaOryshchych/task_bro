@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', function () {
          });
       }
       // leave і enter не підтримують делегування
-      app.addEventListener('mouseleave', minusNone);
+      boxWrap.addEventListener('mouseleave', minusNone);
    }
 
    function minusNone() {
