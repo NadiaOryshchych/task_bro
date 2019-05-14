@@ -16,23 +16,32 @@ window.addEventListener('DOMContentLoaded', function () {
          boxes[i].addEventListener('mouseenter', function() {
             let boxRows = document.querySelectorAll('.box-row');
             if (boxRows.length > 1) {
-               minusRow.style.display = 'flex';
+               minusShow();
+               // minusRow.style.display = 'flex';
                minusRow.style.top = this.offsetTop + 'px';
             }
             let boxCol = document.querySelectorAll('.box-row .box:nth-child(2)');
             if (boxCol.length != 0) {
-               minusCol.style.cssText = 'display: flex;\
-               left:' + this.offsetLeft + 'px ';
+               minusShow();
+               minusCol.style.left = this.offsetLeft + 'px ';
             }
          });
       }
       // leave і enter не підтримують делегування
-      boxWrap.addEventListener('mouseleave', minusNone);
+      boxWrap.addEventListener('mouseleave', minusHide);
    }
+   minusCol.addEventListener('mouseenter', minusShow);
+   minusRow.addEventListener('mouseenter', minusShow);
+   minusCol.addEventListener('mouseleave', minusHide);
+   minusRow.addEventListener('mouseleave', minusHide);
 
-   function minusNone() {
+   function minusHide() {
       minusRow.style.display = 'none';
       minusCol.style.display = 'none';
+   }
+   function minusShow() {
+      minusRow.style.display = 'flex';
+      minusCol.style.display = 'flex';
    }
 
    //addCol
@@ -63,7 +72,7 @@ window.addEventListener('DOMContentLoaded', function () {
       let del = boxRows[index];
       // boxRows.splice(index, 1); - не працює
       del.parentNode.removeChild(del);
-      minusNone();
+      minusHide();
    });
 
    // delCol
@@ -74,7 +83,7 @@ window.addEventListener('DOMContentLoaded', function () {
          let del = boxDel[i];
          del.parentNode.removeChild(del);
       }
-      minusNone();
+      minusHide();
    });
 
 });
