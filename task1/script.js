@@ -1,8 +1,7 @@
 window.addEventListener('DOMContentLoaded', function () {
    'use strict';
    
-   let app = document.querySelector('.app'),
-       boxWrap = document.querySelector('.box-wrap'),
+   let boxWrap = document.querySelector('.box-wrap'),
        minusCol = document.querySelector('.minus-col'),
        minusRow = document.querySelector('.minus-row'),
        plusCol = document.querySelector('.plus-col'),
@@ -10,47 +9,51 @@ window.addEventListener('DOMContentLoaded', function () {
 
    addEvents();  
    function addEvents() {
-      let boxes = document.querySelectorAll('.box');
+      const boxes = document.querySelectorAll('.box');
       for (let i = 0; i < boxes.length; i++) {
          // або можна mousemove
-         boxes[i].addEventListener('mouseenter', function() {
-            let boxRows = document.querySelectorAll('.box-row');
-            if (boxRows.length > 1) {
-               minusRow.style.display = 'flex';
-            }
+         boxes[i].addEventListener('mouseenter', function () {
+            showMinusRow();
             minusRow.style.top = this.offsetTop + 'px';
-
-            let boxCol = document.querySelectorAll('.box-row .box:nth-child(2)');
-            if (boxCol.length != 0) {
-               minusCol.style.display = 'flex';
-            }
+            showMinusCol();
             minusCol.style.left = this.offsetLeft + 'px ';
          });
       }
 
-      minusCol.addEventListener('mouseenter', showMinus);
+      minusCol.addEventListener('mouseenter', function () {
+         showMinusRow();
+         showMinusCol();
+      });
       minusCol.addEventListener('mouseleave', hideMinus);
-      
-      minusRow.addEventListener('mouseenter', showMinus);
+
+      minusRow.addEventListener('mouseenter', function () {
+         showMinusRow();
+         showMinusCol();
+      });
       minusRow.addEventListener('mouseleave', hideMinus);
 
-      boxWrap.addEventListener('mouseenter', showMinus);
+      boxWrap.addEventListener('mouseenter', function () {
+         showMinusRow();
+         showMinusCol();
+      });
       boxWrap.addEventListener('mouseleave', hideMinus);
    }
 
-   function hideMinus() {
-      minusRow.style.display = 'none';
-      minusCol.style.display = 'none';
-   }
-   function showMinus() {
-      let boxRows = document.querySelectorAll('.box-row');
+   function showMinusRow() {
+      const boxRows = document.querySelectorAll('.box-row');
       if (boxRows.length > 1) {
          minusRow.style.display = 'flex';
       }
-      let boxCol = document.querySelectorAll('.box-row .box:nth-child(2)');
+   }
+   function showMinusCol() {
+      const boxCol = document.querySelectorAll('.box-row .box:nth-child(2)');
       if (boxCol.length != 0) {
          minusCol.style.display = 'flex';
       }
+   }
+   function hideMinus() {
+      minusRow.style.display = 'none';
+      minusCol.style.display = 'none';
    }
 
    //addCol
@@ -77,9 +80,8 @@ window.addEventListener('DOMContentLoaded', function () {
    // delRow
    minusRow.addEventListener('click', function() {
       const indexRow = Math.floor(this.offsetTop / plusCol.offsetHeight) - 1;
-      const boxRows = document.querySelectorAll('.box-row');
+      const boxRows = document.getElementsByClassName('box-row');
       const delRow = boxRows[indexRow];
-      // boxRows.splice(index, 1); - не працює
       delRow.parentNode.removeChild(delRow);
       hideMinus();
    });
@@ -94,9 +96,4 @@ window.addEventListener('DOMContentLoaded', function () {
       }
       hideMinus();
    });
-
 });
-
-/*
--де використовувати які змінні(и let замени на const везьде, где переменная не перезаписывается)
-- прочитати про конструктори і класи! */

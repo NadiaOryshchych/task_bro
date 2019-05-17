@@ -44,22 +44,20 @@
    content: '\2212'
 }
 .minus {
-   top: 0;
-   left: 0;
    display: none;
    background-color: #b20000;
 }
 .minus:hover {
    background-color: #ca4c49;
 }
-/* .minus-col {
+.minus-col {
    top: 0;
    left: 54px;
 }
 .minus-row {
    top: 54px;
    left: 0;
-} */
+}
 .plus-col {
    top: 54px;
    right: 0;
