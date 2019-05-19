@@ -2,11 +2,11 @@ window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   class Table {
-    constructor(app, boxWrap, boxRows, boxCol, boxesInRow, minusCol, minusRow, plusCol, plusRow) {
+    constructor(app, boxWrap, boxRows, /* boxCol, */ boxesInRow, minusCol, minusRow, plusCol, plusRow) {
       this.app = app;
       this.boxWrap = boxWrap;
       this.boxRows = boxRows;
-      this.boxCol = boxCol;
+      // this.boxCol = boxCol;
       this.boxesInRow = boxesInRow;
       this.minusCol = minusCol;
       this.minuRow = minusRow;
@@ -22,6 +22,8 @@ window.addEventListener('DOMContentLoaded', function () {
           if (boxRows.length > 1) {
             minusRow.style.display = 'flex';
           }
+          let boxCol = document.querySelectorAll('.box-row .box:nth-child(2)');
+          console.log(boxCol);
           if (boxCol.length != 0) {
             minusCol.style.display = 'flex';
           }
@@ -59,6 +61,7 @@ window.addEventListener('DOMContentLoaded', function () {
         delCol.parentNode.removeChild(delCol);
       }
       let boxesInRow = document.querySelectorAll('.box-row:first-child .box');
+      console.log(boxesInRow);
       if (boxesInRow.length < indexCol || boxesInRow.length == 1) {
         minusCol.style.display = 'none';
       }
@@ -76,26 +79,30 @@ window.addEventListener('DOMContentLoaded', function () {
   let app = document.querySelector('.app'),
     boxWrap = document.querySelector('.boxWrap'),
     boxRows = document.getElementsByClassName('box-row'),
-    boxCol = document.querySelectorAll('.box-row .box:nth-child(2)'),
+    // boxCol = document.querySelectorAll('.box-row .box:nth-child(2)'),
     boxesInRow = document.querySelectorAll('.box-row:first-child .box'),
     minusCol = document.querySelector('.minus-col'),
     minusRow = document.querySelector('.minus-row'),
     plusCol = document.querySelector('.plus-col'),
     plusRow = document.querySelector('.plus-row');
 
-  const table = new Table(app, boxWrap, boxRows, boxCol, boxesInRow, minusCol, minusRow, plusCol, plusRow);
+  const table = new Table(app, boxWrap, boxRows, /* boxCol, */ boxesInRow, minusCol, minusRow, plusCol, plusRow);
   table.addEvents();
   plusCol.addEventListener('click', function() {
     table.addColumns();
+    // table.addEvents();
   });
   plusRow.addEventListener('click', function() {
     table.addRows();
+    // table.addEvents();
   });
   minusRow.addEventListener('click', function() {
     table.removeRows();
+    // table.addEvents();
   });
   minusCol.addEventListener('click', function() {
     table.removeColumns();
+    // table.addEvents();
   });
 
 });
