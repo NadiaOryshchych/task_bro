@@ -2,107 +2,99 @@ window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   class Table {
-    constructor(app, boxWrap, boxRows, /* boxCol, */ boxesInRow, minusCol, minusRow, plusCol, plusRow) {
-      this.app = app;
-      this.boxWrap = boxWrap;
-      this.boxRows = boxRows;
-      // this.boxCol = boxCol;
-      this.boxesInRow = boxesInRow;
-      this.minusCol = minusCol;
-      this.minuRow = minusRow;
-      this.plusCol = plusCol;
-      this.plusRow = plusRow;
+    constructor() {
+      this.app = document.querySelector('.app');
+      this.boxWrap = document.querySelector('.boxWrap');
+      this.boxRows = document.getElementsByClassName('box-row');
+      this.boxesInRow = document.querySelectorAll('.box-row:first-child .box');
+      this.countBoxesInRow = this.boxesInRow.length;
+      this.minusCol = document.querySelector('.minus-col');
+      this.minusRow = document.querySelector('.minus-row');
+      this.plusCol = document.querySelector('.plus-col');
+      this.plusRow = document.querySelector('.plus-row');
+
+      this.showBtn = this.showMinus.bind(this);
+      this.addCol = this.appendColumns.bind(this);
+      this.addRow = this.appendRows.bind(this);
+      this.delCol = this.removeColumns.bind(this);
+      this.delRow = this.removeRows.bind(this);
+
+      this.app.addEventListener('mousemove', this.showBtn);
+      this.plusCol.addEventListener('click', this.addCol);
+      this.plusRow.addEventListener('click', this.addRow);
+      this.minusCol.addEventListener('click', this.delCol);
+      this.minusRow.addEventListener('click', this.delRow);
     }
-    addEvents() {
-      this.app.addEventListener('mousemove', function (event) {
-        const target = event.target;
-        if (target.classList.contains('box')) {
-          minusRow.style.top = target.offsetTop - 1 + 'px';
-          minusCol.style.left = target.offsetLeft - 1 + 'px';
-          if (boxRows.length > 1) {
-            minusRow.style.display = 'flex';
-          }
-          let boxCol = document.querySelectorAll('.box-row .box:nth-child(2)');
-          console.log(boxCol);
-          if (boxCol.length != 0) {
-            minusCol.style.display = 'flex';
-          }
+
+    showMinus(event) {
+      const target = event.target;
+      if (target.classList.contains('box')) {
+        this.minusRow.style.top = target.offsetTop - 1 + 'px';
+        this.minusCol.style.left = target.offsetLeft - 1 + 'px';
+        if (this.boxRows.length > 1) {
+          this.minusRow.style.display = 'flex';
         }
-        if (target.classList.contains('minus-col')) {
-          minusRow.style.display = 'none';
+        if (this.countBoxesInRow != 1) {
+          this.minusCol.style.display = 'flex';
         }
-        if (target.classList.contains('minus-row')) {
-          minusCol.style.display = 'none';
-        }
-        if (target.classList.contains('app')) {
-          minusRow.style.display = 'none';
-          minusCol.style.display = 'none';
-        }
-      });
-    }
-    addColumns() {
-      for (let i = 0; i < this.boxRows.length; i++) {
-        const col = document.createElement('div');
-        col.className = "box";
-        this.boxRows[i].appendChild(col);
+      }
+      if (target.classList.contains('minus-col')) {
+        this.minusRow.style.display = 'none';
+      }
+      if (target.classList.contains('minus-row')) {
+        this.minusCol.style.display = 'none';
+      }
+      if (target.classList.contains('app')) {
+        this.minusRow.style.display = 'none';
+        this.minusCol.style.display = 'none';
       }
     }
-    addRows() {
+    appendColumns() {
+      for (let i = 0; i < this.boxRows.length; i++) {
+        const col = document.createElement('div');
+        col.className = 'box';
+        this.boxRows[i].appendChild(col);
+      }
+      this.countBoxesInRow++;
+    }
+    appendRows() {
       const row = document.createElement('div');
-      row.className = "box-row";
-      row.innerHTML = boxRows[0].innerHTML;
-      boxWrap.appendChild(row);
+      row.className = 'box-row';
+      row.innerHTML = this.boxRows[0].innerHTML;
+      this.boxWrap.appendChild(row);
+      // table.addEvents();
     }
     removeColumns() {
-      const indexCol = Math.floor(minusCol.offsetLeft / 50);
+      const indexCol = Math.floor(this.minusCol.offsetLeft / 50);
       const boxDel = document.querySelectorAll(`.box-row .box:nth-child(${indexCol})`);
       for (let i = 0; i < boxDel.length; i++) {
         const delCol = boxDel[i];
         delCol.parentNode.removeChild(delCol);
       }
-      let boxesInRow = document.querySelectorAll('.box-row:first-child .box');
-      console.log(boxesInRow);
-      if (boxesInRow.length < indexCol || boxesInRow.length == 1) {
-        minusCol.style.display = 'none';
+      this.countBoxesInRow--;
+      if (this.countBoxesInRow < indexCol || this.countBoxesInRow == 1) {
+        this.minusCol.style.display = 'none';
       }
     }
     removeRows() {
-      const indexRow = Math.floor(minusRow.offsetTop / 50) - 1;
-      const delRow = boxRows[indexRow];
+      const indexRow = Math.floor(this.minusRow.offsetTop / 50) - 1;
+      const delRow = this.boxRows[indexRow];
       delRow.parentNode.removeChild(delRow);
-      if (boxRows.length <= indexRow || boxRows.length == 1) {
-        minusRow.style.display = 'none';
+      if (this.boxRows.length <= indexRow || this.boxRows.length == 1) {
+        this.minusRow.style.display = 'none';
       }
     }
+    
+    // addEvents() {
+    //   this.app.addEventListener('mousemove', this.showBtn);
+    //   this.plusCol.addEventListener('click', this.addCol);
+    //   this.plusRow.addEventListener('click', this.addRow);
+    //   this.minusCol.addEventListener('click', this.delCol);
+    //   this.minusRow.addEventListener('click', this.delRow);
+    // }
   }
 
-  let app = document.querySelector('.app'),
-    boxWrap = document.querySelector('.boxWrap'),
-    boxRows = document.getElementsByClassName('box-row'),
-    // boxCol = document.querySelectorAll('.box-row .box:nth-child(2)'),
-    boxesInRow = document.querySelectorAll('.box-row:first-child .box'),
-    minusCol = document.querySelector('.minus-col'),
-    minusRow = document.querySelector('.minus-row'),
-    plusCol = document.querySelector('.plus-col'),
-    plusRow = document.querySelector('.plus-row');
-
-  const table = new Table(app, boxWrap, boxRows, /* boxCol, */ boxesInRow, minusCol, minusRow, plusCol, plusRow);
-  table.addEvents();
-  plusCol.addEventListener('click', function() {
-    table.addColumns();
-    // table.addEvents();
-  });
-  plusRow.addEventListener('click', function() {
-    table.addRows();
-    // table.addEvents();
-  });
-  minusRow.addEventListener('click', function() {
-    table.removeRows();
-    // table.addEvents();
-  });
-  minusCol.addEventListener('click', function() {
-    table.removeColumns();
-    // table.addEvents();
-  });
+  let table = new Table();
+  // table.addEvents();
 
 });
