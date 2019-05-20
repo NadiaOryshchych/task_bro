@@ -84,17 +84,8 @@ window.addEventListener('DOMContentLoaded', function () {
         this.minusRow.style.display = 'none';
       }
     }
-    
-    // addEvents() {
-    //   this.app.addEventListener('mousemove', this.showBtn);
-    //   this.plusCol.addEventListener('click', this.addCol);
-    //   this.plusRow.addEventListener('click', this.addRow);
-    //   this.minusCol.addEventListener('click', this.delCol);
-    //   this.minusRow.addEventListener('click', this.delRow);
-    // }
   }
 
   let table = new Table();
-  // table.addEvents();
 
 });
