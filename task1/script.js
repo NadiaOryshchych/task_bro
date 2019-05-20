@@ -28,23 +28,24 @@ window.addEventListener('DOMContentLoaded', function () {
 
     showMinus(event) {
       const target = event.target;
-      if (target.classList.contains('box')) {
+      const classList = target.classList;
+      if (classList.contains('box')) {
         this.minusRow.style.top = target.offsetTop - 1 + 'px';
         this.minusCol.style.left = target.offsetLeft - 1 + 'px';
         if (this.boxRows.length > 1) {
           this.minusRow.style.display = 'flex';
         }
-        if (this.countBoxesInRow != 1) {
+        if (this.countBoxesInRow > 1) {
           this.minusCol.style.display = 'flex';
         }
       }
-      if (target.classList.contains('minus-col')) {
+      if (classList.contains('minus-col')) {
         this.minusRow.style.display = 'none';
       }
-      if (target.classList.contains('minus-row')) {
+      if (classList.contains('minus-row')) {
         this.minusCol.style.display = 'none';
       }
-      if (target.classList.contains('app')) {
+      if (classList.contains('app')) {
         this.minusRow.style.display = 'none';
         this.minusCol.style.display = 'none';
       }
@@ -60,12 +61,14 @@ window.addEventListener('DOMContentLoaded', function () {
     appendRows() {
       const row = document.createElement('div');
       row.className = 'box-row';
-      row.innerHTML = this.boxRows[0].innerHTML;
+      row.innerHTML = this.boxRows[0].innerHTML; // знайти аналог
       this.boxWrap.appendChild(row);
-      // table.addEvents();
     }
-    removeColumns() {
-      const indexCol = Math.floor(this.minusCol.offsetLeft / 50);
+    removeColumns(event) {
+      console.dir(event.currentTarget);
+      console.log(event.target.style.left);
+      // як через event взнати індекс
+      const indexCol = Math.floor(parseInt(event.target.style.left) / 50);
       const boxDel = document.querySelectorAll(`.box-row .box:nth-child(${indexCol})`);
       for (let i = 0; i < boxDel.length; i++) {
         const delCol = boxDel[i];
@@ -76,8 +79,8 @@ window.addEventListener('DOMContentLoaded', function () {
         this.minusCol.style.display = 'none';
       }
     }
-    removeRows() {
-      const indexRow = Math.floor(this.minusRow.offsetTop / 50) - 1;
+    removeRows(event) {
+      const indexRow = Math.floor(parseInt(event.target.style.top) / 50) - 1;
       const delRow = this.boxRows[indexRow];
       delRow.parentNode.removeChild(delRow);
       if (this.boxRows.length <= indexRow || this.boxRows.length == 1) {

@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+.green {
+  height: 200px;
+  background-color: green;
+}
+
 .app {
   padding: 54px;
   display: inline-block;
