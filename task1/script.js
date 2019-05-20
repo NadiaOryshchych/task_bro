@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', function () {
   'use strict';
-
+  
   class Table {
     constructor() {
       this.app = document.querySelector('.app');
@@ -12,6 +12,8 @@ window.addEventListener('DOMContentLoaded', function () {
       this.minusRow = document.querySelector('.minus-row');
       this.plusCol = document.querySelector('.plus-col');
       this.plusRow = document.querySelector('.plus-row');
+
+      this.sizeBox = 52;
 
       this.showBtn = this.showMinus.bind(this);
       this.addCol = this.appendColumns.bind(this);
@@ -26,12 +28,26 @@ window.addEventListener('DOMContentLoaded', function () {
       this.minusRow.addEventListener('click', this.delRow);
     }
 
+    putIndex() {
+      for (let i = 0; i < this.boxRows.length; i++) {
+        const boxInRow = document.querySelectorAll(`.box-row:nth-child(${[i+1]}) .box`);
+        for (let j = 0; j < boxInRow.length; j++) {
+          boxInRow[j].setAttribute('data-index-row', [i + 1]);
+          boxInRow[j].setAttribute('data-index-col', [j + 1]);
+        }
+      }
+    }
+
     showMinus(event) {
-      const target = event.target;
-      const classList = target.classList;
+      this.putIndex();
+      const target = event.target,
+            classList = target.classList,
+            dataset = target.dataset;
       if (classList.contains('box')) {
-        this.minusRow.style.top = target.offsetTop - 1 + 'px';
-        this.minusCol.style.left = target.offsetLeft - 1 + 'px';
+        this.minusRow.setAttribute('data-index', dataset.indexRow);
+        this.minusCol.setAttribute('data-index', dataset.indexCol);
+        this.minusRow.style.top = this.sizeBox * dataset.indexRow + 3 + 'px';
+        this.minusCol.style.left = this.sizeBox * dataset.indexCol + 3 + 'px';
         if (this.boxRows.length > 1) {
           this.minusRow.style.display = 'flex';
         }
@@ -61,31 +77,35 @@ window.addEventListener('DOMContentLoaded', function () {
     appendRows() {
       const row = document.createElement('div');
       row.className = 'box-row';
-      row.innerHTML = this.boxRows[0].innerHTML; // знайти аналог
+      for (let i = 0; i < this.countBoxesInRow; i++) {
+        const col = document.createElement('div');
+        col.className = 'box';
+        row.appendChild(col);
+      }
       this.boxWrap.appendChild(row);
     }
     removeColumns(event) {
-      console.dir(event.currentTarget);
-      console.log(event.target.style.left);
-      // як через event взнати індекс
-      const indexCol = Math.floor(parseInt(event.target.style.left) / 50);
-      const boxDel = document.querySelectorAll(`.box-row .box:nth-child(${indexCol})`);
-      for (let i = 0; i < boxDel.length; i++) {
-        const delCol = boxDel[i];
-        delCol.parentNode.removeChild(delCol);
+      const datasetCol = event.target.dataset.index;
+      const box = document.querySelectorAll('.box');
+      for (let i = 0; i < box.length; i++) {
+        if (box[i].dataset.indexCol == datasetCol) {
+          box[i].parentNode.removeChild(box[i]);
+        }
       }
       this.countBoxesInRow--;
-      if (this.countBoxesInRow < indexCol || this.countBoxesInRow == 1) {
+      if (this.countBoxesInRow < datasetCol || this.countBoxesInRow == 1) {
         this.minusCol.style.display = 'none';
       }
+      this.putIndex();
     }
     removeRows(event) {
-      const indexRow = Math.floor(parseInt(event.target.style.top) / 50) - 1;
-      const delRow = this.boxRows[indexRow];
+      const datasetRow = event.target.dataset.index;
+      const delRow = this.boxRows[datasetRow - 1];
       delRow.parentNode.removeChild(delRow);
-      if (this.boxRows.length <= indexRow || this.boxRows.length == 1) {
+      if (this.boxRows.length < datasetRow || this.boxRows.length == 1) {
         this.minusRow.style.display = 'none';
       }
+      this.putIndex();
     }
   }
 
