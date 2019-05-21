@@ -15,17 +15,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
       this.sizeBox = 52;
 
-      this.showBtn = this.showMinus.bind(this);
-      this.addCol = this.appendColumns.bind(this);
-      this.addRow = this.appendRows.bind(this);
-      this.delCol = this.removeColumns.bind(this);
-      this.delRow = this.removeRows.bind(this);
-
-      this.app.addEventListener('mousemove', this.showBtn);
-      this.plusCol.addEventListener('click', this.addCol);
-      this.plusRow.addEventListener('click', this.addRow);
-      this.minusCol.addEventListener('click', this.delCol);
-      this.minusRow.addEventListener('click', this.delRow);
+      this.app.addEventListener('mousemove', this.showMinus.bind(this));
+      this.plusCol.addEventListener('click', this.appendColumns.bind(this));
+      this.plusRow.addEventListener('click', this.appendRows.bind(this));
+      this.minusCol.addEventListener('click', this.removeColumns.bind(this));
+      this.minusRow.addEventListener('click', this.removeRows.bind(this));
     }
 
     putIndex() {
@@ -39,7 +33,6 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     showMinus(event) {
-      this.putIndex();
       const target = event.target,
             classList = target.classList,
             dataset = target.dataset;
@@ -73,6 +66,7 @@ window.addEventListener('DOMContentLoaded', function () {
         this.boxRows[i].appendChild(col);
       }
       this.countBoxesInRow++;
+      this.putIndex();
     }
     appendRows() {
       const row = document.createElement('div');
@@ -83,6 +77,7 @@ window.addEventListener('DOMContentLoaded', function () {
         row.appendChild(col);
       }
       this.boxWrap.appendChild(row);
+      this.putIndex();
     }
     removeColumns(event) {
       const datasetCol = event.target.dataset.index;
@@ -110,5 +105,6 @@ window.addEventListener('DOMContentLoaded', function () {
   }
 
   let table = new Table();
+  table.putIndex();
 
 });
