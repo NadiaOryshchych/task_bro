@@ -6,9 +6,6 @@ window.addEventListener('DOMContentLoaded', function () {
       this.app = document.querySelector('.app');
       this.boxWrap = document.querySelector('.boxWrap');
       this.boxRows = document.querySelectorAll('.box-row');
-      // this.boxes = this.boxRows[0].children.length;
-      // this.boxesInRow = document.querySelectorAll('.box-row:first-child > .box');
-      // this.countBoxesInRow = this.boxesInRow.length;
       this.minusCol = document.querySelector('.minus-col');
       this.minusRow = document.querySelector('.minus-row');
       this.plusCol = document.querySelector('.plus-col');
@@ -28,7 +25,7 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     putIndex() {
-      for (let i = 0; i < this.boxRows.length; i++) {
+      for (let i = 0; i < this.boxWrap.childElementCount; i++) {
         const boxInRow = document.querySelectorAll(`.box-row:nth-child(${[i+1]}) .box`);
         for (let j = 0; j < boxInRow.length; j++) {
           boxInRow[j].setAttribute('data-index-row', [i + 1]);
@@ -91,6 +88,7 @@ window.addEventListener('DOMContentLoaded', function () {
         row.appendChild(col);
       }
       this.boxWrap.appendChild(row);
+      console.log(this.boxWrap.childElementCount);
     }
 
     removeColumns(event) {
@@ -107,7 +105,7 @@ window.addEventListener('DOMContentLoaded', function () {
       console.log(this.boxWrap.childElementCount);
       console.log(this.boxRows[0].children.length);
       this.putIndex();
-      console.leg(2);
+      console.log(2);
     }
 
     removeRows(event) {
@@ -117,9 +115,8 @@ window.addEventListener('DOMContentLoaded', function () {
       if (this.boxWrap.childElementCount < datasetRow || this.boxWrap.childElementCount == 1) {
         this.minusRow.style.display = 'none';
       }
-      console.log(this.boxWrap.childElementCount);
-      console.log(this.boxRows[0].children.length);
       this.putIndex();
+      console.log(this.boxWrap.childElementCount);
     }
   }
 
