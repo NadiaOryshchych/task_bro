@@ -33,9 +33,9 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     showMinus(event) {
-      const target = event.target,
-            classList = target.classList,
-            dataset = target.dataset;
+      const target = event.target;
+      const classList = target.classList;
+      const dataset = target.dataset;
       if (classList.contains('box')) {
         this.minusRow.setAttribute('data-index', dataset.indexRow);
         this.minusCol.setAttribute('data-index', dataset.indexCol);
