@@ -25,8 +25,12 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     countBox() {
-      this.countCells = this.boxWrap.children[0].childElementCount;
-      this.countRows = this.boxWrap.childElementCount;
+      // const countCells = this.boxWrap.children[0].childElementCount;
+      // const countRows = this.boxWrap.childElementCount;
+      return {
+        countCells: this.boxWrap.children[0].childElementCount,
+        countRows: this.boxWrap.childElementCount
+      };
     }
 
     putIndex() {
@@ -48,16 +52,15 @@ window.addEventListener('DOMContentLoaded', function () {
       const target = event.target;
       const classList = target.classList;
       const dataset = target.dataset;
-      this.countBox();
       if (classList.contains('box')) {
         this.minusRow.setAttribute('data-index', dataset.indexRow);
         this.minusCol.setAttribute('data-index', dataset.indexCol);
         this.minusRow.style.top = this.sizeBox * dataset.indexRow + 3 + 'px';
         this.minusCol.style.left = this.sizeBox * dataset.indexCol + 3 + 'px';
-        if (this.countRows > 1) {
+        if (this.countBox().countRows > 1) {
           this.minusRow.style.display = 'flex';
         }
-        if (this.countCells > 1) {
+        if (this.countBox().countCells > 1) {
           this.minusCol.style.display = 'flex';
         }
       }
@@ -73,24 +76,22 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     appendColumns() {
-      this.countBox();
-      for (let i = 0; i < this.countRows; i++) {
+      for (let i = 0; i < this.countBox().countRows; i++) {
         const col = document.createElement('div');
         col.className = 'box';
         col.setAttribute('data-index-row', [i + 1]);
-        col.setAttribute('data-index-col', [this.countCells + 1]);
+        col.setAttribute('data-index-col', [this.countBox().countCells + 1]);
         this.boxWrap.children[i].appendChild(col);
       }
     }
 
     appendRows() {
-      this.countBox();
       const row = document.createElement('div');
       row.className = 'box-row';
-      for (let i = 0; i < this.countCells; i++) {
+      for (let i = 0; i < this.countBox().countCells; i++) {
         const col = document.createElement('div');
         col.className = 'box';
-        col.setAttribute('data-index-row', [this.countRows + 1]);
+        col.setAttribute('data-index-row', [this.countBox().countRows + 1]);
         col.setAttribute('data-index-col', [i + 1]);
         row.appendChild(col);
       }
@@ -106,8 +107,7 @@ window.addEventListener('DOMContentLoaded', function () {
           box[i].parentNode.removeChild(box[i]);
         }
       }
-      this.countBox();
-      if (this.countCells < datasetCol || this.countCells == 1) {
+      if (this.countBox().countCells < datasetCol || this.countBox().countCells == 1) {
         this.minusCol.style.display = 'none';
       }
       this.putIndex();
@@ -117,8 +117,7 @@ window.addEventListener('DOMContentLoaded', function () {
       const datasetRow = event.target.dataset.index;
       const delRow = this.boxWrap.children[datasetRow - 1];
       delRow.parentNode.removeChild(delRow);
-      this.countBox();
-      if (this.countRows < datasetRow || this.countRows == 1) {
+      if (this.countBox().countRows < datasetRow || this.countBox().countRows == 1) {
         this.minusRow.style.display = 'none';
       }
       this.putIndex();
