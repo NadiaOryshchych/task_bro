@@ -27,7 +27,6 @@ window.addEventListener('DOMContentLoaded', function () {
     putIndex() {
       for (let i = 0; i < this.boxWrap.childElementCount; i++) {
         const boxInRow = this.boxWrap.children[i].children;
-        // const boxInRow = document.querySelectorAll(`.box-row:nth-child(${[i+1]}) .box`);
         for (let j = 0; j < boxInRow.length; j++) {
           boxInRow[j].setAttribute('data-index-row', [i + 1]);
           boxInRow[j].setAttribute('data-index-col', [j + 1]);
@@ -42,17 +41,19 @@ window.addEventListener('DOMContentLoaded', function () {
     
     showMinus(event) {
       const target = event.target;
-      const classList = target.classList;
-      const dataset = target.dataset;
+      const classList = event.target.classList;
+      const dataset = event.target.dataset;
+      const countBoxes = this.boxWrap.children[0].childElementCount;
+      const countRows = this.boxWrap.childElementCount;
       if (classList.contains('box')) {
         this.minusRow.setAttribute('data-index', dataset.indexRow);
         this.minusCol.setAttribute('data-index', dataset.indexCol);
         this.minusRow.style.top = this.sizeBox * dataset.indexRow + 3 + 'px';
         this.minusCol.style.left = this.sizeBox * dataset.indexCol + 3 + 'px';
-        if (this.boxWrap.childElementCount > 1) {
+        if (countRows > 1) {
           this.minusRow.style.display = 'flex';
         }
-        if (this.boxWrap.children[0].childElementCount > 1) {
+        if (countBoxes > 1) {
           this.minusCol.style.display = 'flex';
         }
       }
@@ -68,23 +69,26 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     appendColumns() {
-      const count = this.boxWrap.children[0].childElementCount;
-      for (let i = 0; i < this.boxWrap.childElementCount; i++) {
+      const countBoxes = this.boxWrap.children[0].childElementCount;
+      const countRows = this.boxWrap.childElementCount;
+      for (let i = 0; i < countRows; i++) {
         const col = document.createElement('div');
         col.className = 'box';
         col.setAttribute('data-index-row', [i + 1]);
-        col.setAttribute('data-index-col', [count + 1]);
+        col.setAttribute('data-index-col', [countBoxes + 1]);
         this.boxWrap.children[i].appendChild(col);
       }
     }
 
     appendRows() {
+      const countBoxes = this.boxWrap.children[0].childElementCount;
+      const countRows = this.boxWrap.childElementCount;
       const row = document.createElement('div');
       row.className = 'box-row';
-      for (let i = 0; i < this.boxWrap.children[0].childElementCount; i++) {
+      for (let i = 0; i < countBoxes; i++) {
         const col = document.createElement('div');
         col.className = 'box';
-        col.setAttribute('data-index-row', [this.boxWrap.childElementCount + 1]);
+        col.setAttribute('data-index-row', [countRows + 1]);
         col.setAttribute('data-index-col', [i + 1]);
         row.appendChild(col);
       }
@@ -95,11 +99,13 @@ window.addEventListener('DOMContentLoaded', function () {
       const datasetCol = event.target.dataset.index;
       const box = document.querySelectorAll('.box');
       for (let i = 0; i < box.length; i++) {
-        if (box[i].dataset.indexCol == datasetCol) {
+        const indexCol = box && box[i].dataset && box[i].dataset.indexCol;
+        if (indexCol == datasetCol) {
           box[i].parentNode.removeChild(box[i]);
         }
       }
-      if (this.boxWrap.children[0].childElementCount < datasetCol || this.boxWrap.children[0].childElementCount == 1) {
+      const countBoxes = this.boxWrap.children[0].childElementCount;
+      if (countBoxes < datasetCol || countBoxes == 1) {
         this.minusCol.style.display = 'none';
       }
       this.putIndex();
@@ -109,7 +115,8 @@ window.addEventListener('DOMContentLoaded', function () {
       const datasetRow = event.target.dataset.index;
       const delRow = this.boxWrap.children[datasetRow - 1];
       delRow.parentNode.removeChild(delRow);
-      if (this.boxWrap.childElementCount < datasetRow || this.boxWrap.childElementCount == 1) {
+      const countRows = this.boxWrap.childElementCount;
+      if (countRows < datasetRow || countRows == 1) {
         this.minusRow.style.display = 'none';
       }
       this.putIndex();
