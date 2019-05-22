@@ -24,6 +24,11 @@ window.addEventListener('DOMContentLoaded', function () {
       this.minusRow.addEventListener('click', this.removeRows.bind(this));
     }
 
+    countBox() {
+      this.countCells = this.boxWrap.children[0].childElementCount;
+      this.countRows = this.boxWrap.childElementCount;
+    }
+
     putIndex() {
       for (let i = 0; i < this.boxWrap.childElementCount; i++) {
         const boxInRow = this.boxWrap.children[i].children;
@@ -41,19 +46,18 @@ window.addEventListener('DOMContentLoaded', function () {
     
     showMinus(event) {
       const target = event.target;
-      const classList = event.target.classList;
-      const dataset = event.target.dataset;
-      const countCells = this.boxWrap.children[0].childElementCount;
-      const countRows = this.boxWrap.childElementCount;
+      const classList = target.classList;
+      const dataset = target.dataset;
+      this.countBox();
       if (classList.contains('box')) {
         this.minusRow.setAttribute('data-index', dataset.indexRow);
         this.minusCol.setAttribute('data-index', dataset.indexCol);
         this.minusRow.style.top = this.sizeBox * dataset.indexRow + 3 + 'px';
         this.minusCol.style.left = this.sizeBox * dataset.indexCol + 3 + 'px';
-        if (countRows > 1) {
+        if (this.countRows > 1) {
           this.minusRow.style.display = 'flex';
         }
-        if (countCells > 1) {
+        if (this.countCells > 1) {
           this.minusCol.style.display = 'flex';
         }
       }
@@ -69,26 +73,24 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     appendColumns() {
-      const countCells = this.boxWrap.children[0].childElementCount;
-      const countRows = this.boxWrap.childElementCount;
-      for (let i = 0; i < countRows; i++) {
+      this.countBox();
+      for (let i = 0; i < this.countRows; i++) {
         const col = document.createElement('div');
         col.className = 'box';
         col.setAttribute('data-index-row', [i + 1]);
-        col.setAttribute('data-index-col', [countCells + 1]);
+        col.setAttribute('data-index-col', [this.countCells + 1]);
         this.boxWrap.children[i].appendChild(col);
       }
     }
 
     appendRows() {
-      const countCells = this.boxWrap.children[0].childElementCount;
-      const countRows = this.boxWrap.childElementCount;
+      this.countBox();
       const row = document.createElement('div');
       row.className = 'box-row';
-      for (let i = 0; i < countCells; i++) {
+      for (let i = 0; i < this.countCells; i++) {
         const col = document.createElement('div');
         col.className = 'box';
-        col.setAttribute('data-index-row', [countRows + 1]);
+        col.setAttribute('data-index-row', [this.countRows + 1]);
         col.setAttribute('data-index-col', [i + 1]);
         row.appendChild(col);
       }
@@ -104,8 +106,8 @@ window.addEventListener('DOMContentLoaded', function () {
           box[i].parentNode.removeChild(box[i]);
         }
       }
-      const countCells = this.boxWrap.children[0].childElementCount;
-      if (countCells < datasetCol || countCells == 1) {
+      this.countBox();
+      if (this.countCells < datasetCol || this.countCells == 1) {
         this.minusCol.style.display = 'none';
       }
       this.putIndex();
@@ -115,8 +117,8 @@ window.addEventListener('DOMContentLoaded', function () {
       const datasetRow = event.target.dataset.index;
       const delRow = this.boxWrap.children[datasetRow - 1];
       delRow.parentNode.removeChild(delRow);
-      const countRows = this.boxWrap.childElementCount;
-      if (countRows < datasetRow || countRows == 1) {
+      this.countBox();
+      if (this.countRows < datasetRow || this.countRows == 1) {
         this.minusRow.style.display = 'none';
       }
       this.putIndex();
