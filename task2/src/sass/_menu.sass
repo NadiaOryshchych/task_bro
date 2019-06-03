@@ -1,0 +1,88 @@
+.menu
+  position: relative
+  &__list
+    visibility: hidden
+    opacity: 0
+    position: absolute
+    top: 30px
+    right: 0
+    width: 265px
+    list-style: none
+    background-color: rgba($white, 0.9)
+    border-radius: 5px
+    box-shadow: 0 0 5px $white
+    z-index: 3
+    transition: .3s all ease-in-out
+    &__item
+      text-align: center
+      border: none
+      border-top: 1px solid $dark-color
+      border-bottom: 1px solid $dark-color
+      &:first-child
+        border-top: none
+      &:last-child
+        border-bottom: none
+      a
+        display: block
+        padding: 15px
+        text-decoration: none
+        font-family: $font-regular
+        color: $dark-color
+        transition: 0.5s all
+        &:hover
+          font-family: $font-bold
+          background: linear-gradient(135deg, rgba($white, 0) 0%,rgba($light-color, 0.65) 100%)
+  &__checkbox
+    display: none
+    &:checked ~
+      .menu__checkbox-text
+        transform: translateX(-30px)
+      .menu__checkbox-text .menu__checkbox-icon:before
+        top: 5px
+        transform: rotate(45deg) translate(6.5px, 6px)
+      .menu__checkbox-text .menu__checkbox-icon:after
+        top: 23px
+        transform: rotate(-45deg) translate(7px, -6px)
+      .menu__checkbox-text .menu__checkbox-icon
+        background-color: transparent
+        height: 30px
+        transform: translateX(80px)
+      .menu__list
+        visibility: visible
+        opacity: 1
+        transition-delay: .2s
+    &-text
+      display: flex
+      justify-content: space-between
+      align-items: center
+      width: 80px
+      cursor: pointer
+      font-family: $font-regular
+      font-size: 16px
+      color: $white
+      z-index: 3
+      transition: 0.5s
+    &-icon
+      display: block
+      position: relative
+      width: 30px
+      height: 3px
+      background-color: $white
+      transition: 0.5s
+      &:after, &:before
+        content: ''
+        position: absolute
+        left: 0
+        width: 30px
+        height: 3px
+        background-color: $white
+      &:after
+        top: 9px
+      &:before
+        top: -9px
+    
+@media (max-width: 576px)
+  .menu
+    &__list
+      width: 290px
+  
