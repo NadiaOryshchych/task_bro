@@ -29,6 +29,7 @@ window.addEventListener('DOMContentLoaded', function () {
       recallsBlock = document.querySelector('.recalls__blocks'),
       startTouch = 0,
       endTouch = 0,
+      dist = 0,
       slidesRecalls = document.querySelectorAll('.recalls__block'),
       dotsWrap = document.querySelector('.slider-dots'),
       dots = document.querySelectorAll('.dot');
@@ -62,9 +63,9 @@ window.addEventListener('DOMContentLoaded', function () {
     showSlides(slideIndex += n);
   }
   function moveSlide() {
-    if (startTouch > endTouch) {
+    if (startTouch > endTouch || dist < 0) {
       plussSlides(1);
-    } else if (startTouch < endTouch) {
+    } else if (startTouch < endTouch || dist > 0) {
       plussSlides(-1);
     }
   }
@@ -73,6 +74,11 @@ window.addEventListener('DOMContentLoaded', function () {
       let eventTouch = e.changedTouches[0];
       startTouch = parseInt(eventTouch.clientX);
       e.preventDefault();
+    }, false)
+    recallsBlock.addEventListener('touchmove', function (e) {
+      let eventTouch = e.changedTouches[0];
+      dist = parseInt(eventTouch.clientX) - startTouch;
+      e.preventDefault()
     }, false)
     recallsBlock.addEventListener('touchend', function (e) {
       let eventTouch = e.changedTouches[0];

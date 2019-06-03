@@ -1,0 +1,1278 @@
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0; }
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+  display: block; }
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */ }
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent; }
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+  /* 2 */ }
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder; }
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sub {
+  bottom: -0.25em; }
+
+sup {
+  top: -0.5em; }
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+img {
+  border-style: none; }
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */ }
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible; }
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none; }
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button; }
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0; }
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText; }
+
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em; }
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */ }
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline; }
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto; }
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+[type="checkbox"],
+[type="radio"] {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */ }
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */ }
+
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block; }
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item; }
+
+/* Misc
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10+.
+ */
+template {
+  display: none; }
+
+/**
+ * Add the correct display in IE 10.
+ */
+[hidden] {
+  display: none; }
+
+@font-face {
+  font-family: 'Maven Pro Regular';
+  src: url("../fonts/MavenPro-Regular.eot");
+  src: local("Maven Pro Regular"), local("MavenPro-Regular"), url("../fonts/MavenPro-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/MavenPro-Regular.woff2") format("woff2"), url("../fonts/MavenPro-Regular.woff") format("woff"), url("../fonts/MavenPro-Regular.ttf") format("truetype"), url("../fonts/MavenPro-Regular.svg#MavenPro-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Maven Pro Medium';
+  src: url("../fonts/MavenPro-Medium.eot");
+  src: local("Maven Pro Medium"), local("MavenPro-Medium"), url("../fonts/MavenPro-Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/MavenPro-Medium.woff2") format("woff2"), url("../fonts/MavenPro-Medium.woff") format("woff"), url("../fonts/MavenPro-Medium.ttf") format("truetype"), url("../fonts/MavenPro-Medium.svg#MavenPro-Medium") format("svg");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Maven Pro Bold';
+  src: url("../fonts/MavenPro-Bold.eot");
+  src: local("Maven Pro Bold"), local("MavenPro-Bold"), url("../fonts/MavenPro-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/MavenPro-Bold.woff2") format("woff2"), url("../fonts/MavenPro-Bold.woff") format("woff"), url("../fonts/MavenPro-Bold.ttf") format("truetype"), url("../fonts/MavenPro-Bold.svg#MavenPro-Bold") format("svg");
+  font-weight: bold;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Maven Pro Black';
+  src: url("../fonts/MavenPro-Black.eot");
+  src: local("Maven Pro Black"), local("MavenPro-Black"), url("../fonts/MavenPro-Black.eot?#iefix") format("embedded-opentype"), url("../fonts/MavenPro-Black.woff2") format("woff2"), url("../fonts/MavenPro-Black.woff") format("woff"), url("../fonts/MavenPro-Black.ttf") format("truetype"), url("../fonts/MavenPro-Black.svg#MavenPro-Black") format("svg");
+  font-weight: 900;
+  font-style: normal; }
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none; }
+
+body {
+  font-family: "Maven Pro Regular", sans-serif; }
+
+img {
+  max-width: 100%; }
+
+.container {
+  max-width: 1400px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto; }
+  @media (max-width: 1440px) {
+    .container {
+      max-width: 1140px; } }
+  @media (max-width: 1200px) {
+    .container {
+      max-width: 960px; } }
+  @media (max-width: 992px) {
+    .container {
+      max-width: 720px; } }
+  @media (max-width: 768px) {
+    .container {
+      max-width: 560px; } }
+  @media (max-width: 576px) {
+    .container {
+      max-width: 100%; } }
+
+.section {
+  text-align: center; }
+  .section__title {
+    font-family: "Maven Pro Black";
+    font-size: 36px;
+    color: #0b2a37; }
+    @media (max-width: 768px) {
+      .section__title {
+        font-size: 29px; } }
+    .section__title-big {
+      font-family: "Maven Pro Black";
+      font-size: 80px;
+      line-height: 100px;
+      color: #fff; }
+      @media (max-width: 992px) {
+        .section__title-big {
+          font-size: 60px;
+          line-height: 70px; } }
+      @media (max-width: 768px) {
+        .section__title-big {
+          font-size: 35px;
+          line-height: 50px; } }
+  .section__subtitle {
+    font-family: "Maven Pro Regular";
+    font-size: 18px;
+    color: #0b2a37; }
+
+.btn {
+  font-family: "Maven Pro Bold";
+  color: #fff;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 5px; }
+  @media (min-width: 992px) {
+    .btn:hover {
+      cursor: pointer;
+      background-color: #ff8484;
+      border: 2px solid #ff8484;
+      -webkit-box-shadow: 0 0 5px #ff8484;
+      box-shadow: 0 0 5px #ff8484; } }
+  .btn-big {
+    padding: 0 45px;
+    font-size: 18px;
+    height: 70px; }
+    @media (max-width: 768px) {
+      .btn-big {
+        padding: 0 25px;
+        font-size: 16px;
+        height: 50px; } }
+  .btn-small {
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 0 15px;
+    font-size: 16px;
+    height: 40px; }
+    @media (max-width: 768px) {
+      .btn-small {
+        font-size: 14px; } }
+  .btn-colorful {
+    background-color: #ff5151;
+    border: 2px solid #ff5151; }
+  .btn-show-tablet {
+    display: none;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto; }
+    @media (max-width: 1440px) {
+      .btn-show-tablet {
+        display: block; } }
+  .btn-show-mobile {
+    display: none;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto; }
+    @media (max-width: 992px) {
+      .btn-show-mobile {
+        display: block; } }
+
+.main {
+  padding: 220px 0 158px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  z-index: 1; }
+  .main::before {
+    content: '';
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(11, 42, 55, 0.6);
+    z-index: -1; }
+  .main__slider__item {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1; }
+    .main__slider__item:first-child {
+      display: block; }
+    .main__slider__item img {
+      height: 100%;
+      width: 100%;
+      -o-object-fit: cover;
+      object-fit: cover;
+      -o-object-position: top;
+      object-position: top; }
+  .main:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(11, 42, 55, 0.6);
+    z-index: -1; }
+  .main__title {
+    margin: 0;
+    font-family: "Maven Pro Black";
+    font-size: 80px;
+    color: #8ae2e2; }
+  .main__subtitle {
+    margin-top: 10px;
+    font-family: "Maven Pro Black";
+    font-size: 58px; }
+  .main__description {
+    margin: 35px auto 50px;
+    width: 800px;
+    font-family: "Maven Pro Regular";
+    font-size: 26px; }
+    .main__description-mark {
+      font-family: "Maven Pro Bold";
+      color: #8ae2e2; }
+
+@media (max-width: 992px) {
+  .main {
+    padding: 100px 0; }
+    .main__description {
+      width: 100%; } }
+
+@media (max-width: 768px) {
+  .main {
+    padding: 75px 0 50px; }
+    .main__title {
+      font-size: 54px; }
+    .main__subtitle {
+      font-size: 36px; }
+    .main__description {
+      font-size: 20px; } }
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 0;
+  z-index: 2;
+  -webkit-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out; }
+  .header-inside {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+    .header-inside__block {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center; }
+  .header__logo {
+    width: 260px;
+    height: 60px;
+    background: url(../img/logo/logo-light.svg) center center no-repeat;
+    background-size: contain;
+    z-index: 3; }
+  .header__btns {
+    margin-left: 20px; }
+  .header__btn:first-child {
+    position: relative;
+    padding-left: 40px; }
+    .header__btn:first-child:before {
+      content: '?';
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      left: 13px;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      font-size: 14px;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 50%; }
+  .header__link {
+    margin-right: 40px;
+    font-family: "Maven Pro Regular";
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none; }
+    .header__link:hover {
+      cursor: pointer;
+      text-decoration: underline; }
+
+.header-white {
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 5px #0b2a37;
+  box-shadow: 0 0 5px #0b2a37; }
+  .header-white .header__logo {
+    background: url(../img/logo/logo-dark.svg) center center no-repeat;
+    background-size: contain; }
+  .header-white .header__btn {
+    color: #0b2a37;
+    border: 2px solid #0b2a37; }
+    .header-white .header__btn:first-child:before {
+      color: #0b2a37;
+      border: 2px solid #0b2a37; }
+  .header-white .header__link {
+    color: #0b2a37; }
+  .header-white .menu__list__item {
+    -webkit-box-shadow: 0 0 5px #0b2a37;
+    box-shadow: 0 0 5px #0b2a37; }
+  .header-white .menu__button {
+    color: #0b2a37; }
+    .header-white .menu__button-icon {
+      background-color: #0b2a37; }
+      .header-white .menu__button-icon:after, .header-white .menu__button-icon:before {
+        background-color: #0b2a37; }
+
+@media (max-width: 992px) {
+  header .header__logo, .header-white .header__logo {
+    width: 150px; }
+  header .header__btn:first-child, .header-white .header__btn:first-child {
+    display: none; } }
+
+@media (max-width: 768px) {
+  header .header__logo, .header-white .header__logo {
+    width: 80px;
+    background: url(../img/logo/logo-light.svg) center left no-repeat;
+    background-size: auto; }
+  header .header__btn:first-child, .header-white .header__btn:first-child {
+    display: none; }
+  header .header__link, .header-white .header__link {
+    margin-right: 20px;
+    text-decoration: underline; } }
+
+@media (max-width: 576px) {
+  header .header__btn:last-child, .header-white .header__btn:last-child {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    background-color: rgba(11, 42, 55, 0.6);
+    -webkit-box-shadow: 0 0 5px #0b2a37;
+    box-shadow: 0 0 5px #0b2a37; }
+  header .header__links, .header-white .header__links {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%); }
+  header .header__link:last-child, .header-white .header__link:last-child {
+    margin-right: 0; }
+  .header {
+    padding: 25px 0 5px; }
+  .header-white {
+    padding: 25px 0 5px; }
+    .header-white .header__btn:last-child {
+      background-color: rgba(255, 255, 255, 0.6); } }
+
+.menu {
+  position: relative; }
+  .menu:hover .menu__list {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition-delay: .2s;
+    transition-delay: .2s; }
+  .menu__list {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 55px;
+    width: 265px;
+    list-style: none;
+    z-index: 3;
+    -webkit-transition: .3s all ease-in-out;
+    transition: .3s all ease-in-out; }
+    .menu__list__item {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.9);
+      -webkit-box-shadow: 0 0 5px #fff;
+      box-shadow: 0 0 5px #fff; }
+      .menu__list__item:first-child {
+        border-radius: 5px 5px 0 0; }
+      .menu__list__item:last-child {
+        border-radius: 0 0 5px 5px; }
+      .menu__list__item a {
+        display: block;
+        padding: 15px;
+        text-decoration: none;
+        font-family: "Maven Pro Regular";
+        color: #0b2a37;
+        -webkit-transition: 0.5s all;
+        transition: 0.5s all; }
+        .menu__list__item a:hover {
+          font-family: "Maven Pro Bold"; }
+  .menu__button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 80px;
+    cursor: pointer;
+    font-family: "Maven Pro Regular";
+    font-size: 16px;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    z-index: 3; }
+    .menu__button-icon {
+      display: block;
+      position: relative;
+      width: 30px;
+      height: 3px;
+      background-color: #fff; }
+      .menu__button-icon:after, .menu__button-icon:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 30px;
+        height: 3px;
+        background-color: #fff; }
+      .menu__button-icon:after {
+        top: 9px; }
+      .menu__button-icon:before {
+        top: -9px; }
+
+@media (max-width: 576px) {
+  .menu__list {
+    padding-top: 45px;
+    width: 290px; } }
+
+.question {
+  padding: 30px 0;
+  font-size: 18px;
+  text-align: center;
+  background-color: #f4fcfc; }
+  .question__text {
+    display: inline;
+    font-family: "Maven Pro Medium";
+    color: #0b2a37; }
+  .question__link {
+    font-family: "Maven Pro Bold";
+    color: #8ae2e2;
+    text-decoration: none;
+    border-bottom: 1px solid #8ae2e2; }
+    .question__link:hover {
+      color: #ff5151;
+      border-bottom: 1px solid #ff5151; }
+
+@media (max-width: 576px) {
+  .question__text {
+    display: block;
+    margin-bottom: 10px; } }
+
+.specialists {
+  padding: 95px 0 136px; }
+  .specialists__list {
+    margin-top: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+  .specialists__block {
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 300px; }
+    .specialists__block__img {
+      min-height: 130px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center; }
+    .specialists__block__title {
+      margin-top: 30px;
+      min-height: 60px;
+      font-family: "Maven Pro Bold";
+      font-size: 22px;
+      color: #0b2a37; }
+    .specialists__block__description {
+      font-family: "Maven Pro Regular";
+      font-size: 16px;
+      color: #0b2a37;
+      line-height: 22px; }
+
+@media (max-width: 992px) {
+  .specialists {
+    padding: 80px 0; } }
+
+@media (max-width: 768px) {
+  .specialists {
+    padding: 50px 0; }
+    .specialists__list {
+      margin-top: 10px; }
+    .specialists__block__title {
+      margin: 10px 0;
+      min-height: 0; } }
+
+.cover {
+  height: 543px;
+  width: 100%;
+  background-size: cover;
+  background-position: right top; }
+  .cover-before-steps {
+    background-image: url(../img/cover/cover-1.jpg); }
+  .cover-before-recalls {
+    background-image: url(../img/cover/cover-2.jpg); }
+  .cover-before-preferences {
+    background-image: url(../img/cover/cover-3.jpg); }
+
+@media (max-width: 992px) {
+  .cover {
+    height: 343px; } }
+
+@media (max-width: 768px) {
+  .cover {
+    height: 203px; } }
+
+@media (max-width: 576px) {
+  .cover {
+    height: 103px; } }
+
+.steps {
+  padding: 110px 0 55px;
+  background-color: #8ae2e2;
+  color: #fff; }
+  .steps-inside {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+  .steps__title {
+    margin-top: 45px;
+    margin-left: 25px;
+    width: 48%;
+    text-align: left; }
+  .steps__btn {
+    margin-top: 65px; }
+  .steps__list {
+    display: block;
+    margin: 0 205px;
+    max-width: 300px;
+    list-style: none; }
+  .steps__item {
+    position: relative;
+    min-height: 176px; }
+    .steps__item:before {
+      content: '';
+      position: absolute;
+      top: -17px;
+      display: block;
+      width: 57px;
+      height: 57px;
+      border: 1px dashed #fff;
+      border-radius: 50%; }
+    .steps__item:after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 255px;
+      height: 191px;
+      background-image: url("../img/steps/arrow.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 1; }
+    .steps__item:nth-child(odd) {
+      margin-right: 50px;
+      text-align: left; }
+      .steps__item:nth-child(odd):before {
+        left: -80px; }
+      .steps__item:nth-child(odd):after {
+        top: 5px;
+        left: 235px; }
+    .steps__item:nth-child(even) {
+      margin-left: 50px;
+      text-align: right; }
+      .steps__item:nth-child(even):before {
+        left: 259px; }
+      .steps__item:nth-child(even):after {
+        top: 12px;
+        right: 238px;
+        -webkit-transform: scale(-1, 1);
+        transform: scale(-1, 1); }
+    .steps__item:first-child:before {
+      background: url("../img/steps/icon-step-1.svg") center no-repeat; }
+    .steps__item:nth-child(2):before {
+      background: url("../img/steps/icon-step-2.svg") center no-repeat; }
+    .steps__item:nth-child(3):before {
+      background: url("../img/steps/icon-step-3.svg") center no-repeat; }
+    .steps__item:nth-child(4):before {
+      background: url("../img/steps/icon-step-4.svg") center no-repeat; }
+    .steps__item:last-child:after {
+      display: none; }
+    .steps__item__title {
+      font-family: "Maven Pro Bold";
+      font-size: 22px; }
+    .steps__item__description {
+      margin-top: 10px;
+      font-family: "Maven Pro Regular";
+      font-size: 16px;
+      line-height: 22px; }
+
+@media (max-width: 1440px) {
+  .steps {
+    padding: 100px 0; }
+    .steps-inside {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column; }
+    .steps__title {
+      margin-top: 0;
+      margin-left: 0;
+      width: 100%;
+      text-align: center; }
+    .steps__list {
+      margin: 20px auto 0; }
+    .steps__btn {
+      display: none; } }
+
+@media (max-width: 992px) {
+  .steps {
+    padding: 80px 0; } }
+
+@media (max-width: 768px) {
+  .steps {
+    padding: 50px 0; }
+    .steps__item {
+      margin-top: 20px;
+      min-height: 0; }
+      .steps__item:after {
+        display: none; } }
+
+@media (max-width: 576px) {
+  .steps__item:after {
+    display: none; }
+  .steps__item:nth-child(odd) {
+    margin-left: 85px;
+    margin-right: 0; }
+    .steps__item:nth-child(odd):before {
+      top: 0; }
+  .steps__item:nth-child(even) {
+    margin-left: 85px;
+    text-align: left; }
+    .steps__item:nth-child(even):before {
+      top: 0;
+      left: -80px; } }
+
+.recalls {
+  padding: 90px 0 97px; }
+  .recalls__title {
+    margin-bottom: 25px; }
+  .recalls__block {
+    margin-top: 60px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 400px;
+    font-family: "Maven Pro Regular";
+    font-size: 16px;
+    line-height: 22px; }
+    .recalls__blocks {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between; }
+  .recalls__text {
+    position: relative;
+    padding: 30px 20px;
+    text-align: left;
+    background-color: #f4fcfc; }
+    .recalls__text::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: -20px;
+      border: 20px solid transparent;
+      border-top: 0px solid transparent;
+      border-left: 0px solid transparent;
+      border-right: 30px solid #f4fcfc; }
+  .recalls__caption {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-top: 22px;
+    line-height: 20px; }
+  .recalls__name {
+    margin-right: 10px;
+    font-family: "Maven Pro Bold";
+    text-align: right; }
+  .recalls__profesion {
+    display: block;
+    font-family: "Maven Pro Regular"; }
+
+.slider-dots {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center; }
+  .slider-dots .dot {
+    display: none;
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+    margin: 0 10px;
+    background-color: #ff5151;
+    border-radius: 50%;
+    -webkit-transition: background-color 0.6s ease;
+    transition: background-color 0.6s ease; }
+    .slider-dots .dot-active {
+      background-color: #0b2a37;
+      height: 18px;
+      width: 18px; }
+
+@media (max-width: 1440px) {
+  .recalls__title {
+    margin-bottom: 0; }
+  .recalls__block {
+    max-width: 300px; } }
+
+@media (max-width: 992px) {
+  .recalls {
+    padding: 80px 0; } }
+
+@media (max-width: 768px) {
+  .recalls {
+    padding: 50px 0; }
+    .recalls__block {
+      margin-top: 30px; } }
+
+.preferences {
+  padding: 165px 0;
+  background: url(../img/preferences/logo-shape.jpg) bottom right no-repeat;
+  background-size: cover;
+  color: #fff; }
+  .preferences-inside {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse; }
+  .preferences__title {
+    text-align: left;
+    margin-top: 85px;
+    width: 40%; }
+  .preferences__btn {
+    margin-top: 55px; }
+  .preferences__list {
+    margin-left: 68px;
+    margin-right: 190px;
+    max-width: 500px;
+    text-align: left;
+    font-family: "Maven Pro Regular";
+    font-size: 16px;
+    line-height: 22px; }
+  .preferences__item {
+    margin-top: 38px;
+    position: relative;
+    max-width: 485px; }
+    .preferences__item:first-child {
+      margin-top: 0; }
+    .preferences__item:before {
+      content: '';
+      position: absolute;
+      top: -7px;
+      height: 2px;
+      width: 50px;
+      background-color: #8ae2e2; }
+
+@media (max-width: 1440px) {
+  .preferences__title {
+    margin-top: 0; }
+  .preferences__list {
+    margin-right: 110px; } }
+
+@media (max-width: 1200px) {
+  .preferences {
+    padding: 100px 0; }
+    .preferences__title {
+      text-align: right; }
+    .preferences__list {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%; } }
+
+@media (max-width: 992px) {
+  .preferences {
+    padding: 80px 0; }
+    .preferences__title {
+      width: 100%;
+      text-align: center; }
+    .preferences__btn {
+      margin-top: 20px;
+      display: none; }
+    .preferences__list {
+      margin-top: 30px;
+      margin-left: auto;
+      margin-right: auto; } }
+
+@media (max-width: 768px) {
+  .preferences {
+    padding: 50px 0; } }
+
+.call-us {
+  padding: 41px 0; }
+  .call-us__btn {
+    margin-top: 37px; }
+
+@media (max-width: 768px) {
+  .call-us__btn {
+    margin-top: 15px; } }
+
+.footer {
+  padding: 80px 0 90px;
+  color: #fff;
+  background-color: #0b2a37; }
+  .footer-inside {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+  .footer__info {
+    margin-left: 65px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+  .footer__logo {
+    width: 220px; }
+    .footer__logo img {
+      width: 100%; }
+  .footer__networks {
+    margin-top: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-family: "Maven Pro Bold";
+    font-size: 22px; }
+    .footer__networks__link {
+      margin-left: 10px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center; }
+  .footer__copyright {
+    margin-top: 15px;
+    font-family: "Maven Pro Regular";
+    font-size: 14px;
+    color: gray; }
+  .footer__menu {
+    list-style: none;
+    min-width: 200px; }
+    .footer__menu-block {
+      margin-left: 35px; }
+      .footer__menu-block:first-child {
+        margin-left: 0; }
+      .footer__menu-blocks {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between; }
+    .footer__menu__title {
+      margin-bottom: 40px;
+      font-family: "Maven Pro Bold";
+      font-size: 22px; }
+    .footer__menu__item {
+      margin-top: 10px;
+      font-family: "Maven Pro Regular";
+      font-size: 16px; }
+
+@media (max-width: 1200px) {
+  .footer {
+    padding: 50px 0; }
+    .footer__info {
+      margin-left: 0; }
+    .footer__menu-block {
+      margin-left: 15px; } }
+
+@media (max-width: 992px) {
+  .footer__info {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%; }
+  .footer__logo {
+    width: 220px; }
+    .footer__logo img {
+      width: 100%; }
+  .footer__copyright {
+    width: 100%;
+    text-align: center; }
+  .footer__menu-block {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px; }
+    .footer__menu-block:first-child {
+      margin-left: auto; }
+    .footer__menu-blocks {
+      width: 100%; }
+  .footer__menu__title {
+    margin-bottom: 0; } }
+
+@media (min-width: 576px) and (max-width: 992px) {
+  .footer__networks {
+    margin-top: 0; }
+  .footer__copyright {
+    margin-top: 0; } }
+
+@media (max-width: 576px) {
+  .footer__info {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+  .footer__logo {
+    margin-top: 20px; }
+  .footer__networks {
+    width: 100%; } }
+
+/*# sourceMappingURL=style.min.css.map */
