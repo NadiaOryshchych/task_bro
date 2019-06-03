@@ -5,18 +5,12 @@ window.addEventListener('DOMContentLoaded', function () {
   let header = document.querySelector('.header');
   window.addEventListener('scroll', function(e) {
     const classList = header.classList;
-    if (window.scrollY > 150) {
+    if (window.scrollY > 100) {
       classList.add('header-white');
     } else {
       classList.remove('header-white');
     }
   });
-  // let elem = document.querySelector('.main');
-  // let a = window.getComputedStyle(elem).height; // краще не брати цей метод
-  // let b = elem.offsetHeight;
-  // let c = elem.getBoundingClientRect().height;
-  // let d = elem.getBoundingClientRect();
-  // let g = window.pageOffset;
 
   // слайдер для main
   let slidesMain = document.querySelectorAll('.main__slider__item');
@@ -32,6 +26,9 @@ window.addEventListener('DOMContentLoaded', function () {
   
   // слайдер для recalls
   let slideIndex = 1,
+      recallsBlock = document.querySelector('.recalls__blocks'),
+      startTouch = 0,
+      endTouch = 0,
       slidesRecalls = document.querySelectorAll('.recalls__block'),
       dotsWrap = document.querySelector('.slider-dots'),
       dots = document.querySelectorAll('.dot');
@@ -58,18 +55,33 @@ window.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
-  // prev.addEventListener('click', function () {
-  //   plussSlides(-1);
-  // });
-  // next.addEventListener('click', function () {
-  //   plussSlides(1);
-  // });
   function activeSlide(n) {
     showSlides(slideIndex = n);
   }
   function plussSlides(n) {
     showSlides(slideIndex += n);
   }
+  function moveSlide() {
+    if (startTouch > endTouch) {
+      plussSlides(1);
+    } else if (startTouch < endTouch) {
+      plussSlides(-1);
+    }
+  }
+  if (window.innerWidth <= 768) {
+    recallsBlock.addEventListener('touchstart', function (e) {
+      let eventTouch = e.changedTouches[0];
+      startTouch = parseInt(eventTouch.clientX);
+      e.preventDefault();
+    }, false)
+    recallsBlock.addEventListener('touchend', function (e) {
+      let eventTouch = e.changedTouches[0];
+      endTouch = parseInt(eventTouch.clientX);
+      moveSlide();
+      e.preventDefault();
+    }, false)
+
+  };
 
 
 });

@@ -16,7 +16,7 @@
   &__logo
     width: 260px
     height: 60px
-    background: url(../img/logo/logo-light.png) center center no-repeat
+    background: url(../img/logo/logo-light.svg) center center no-repeat
     background-size: contain
     z-index: 3
   &__btn
@@ -49,12 +49,11 @@
       text-decoration: underline
 
 .header-white
-  padding: 5px 0
   background-color: $white
   box-shadow: 0 0 5px $dark-color
   .header
     &__logo
-      background: url(../img/logo/logo-dark.png) center center no-repeat
+      background: url(../img/logo/logo-dark.svg) center center no-repeat
       background-size: contain
     &__btn
       color: $dark-color
@@ -67,10 +66,10 @@
       color: $dark-color
   .menu
     &__list
-      box-shadow: 0 0 5px $dark-color
-    &__checkbox
-      &-text
-        color: $dark-color !important
+      &__item
+        box-shadow: 0 0 5px $dark-color
+    &__button
+      color: $dark-color
       &-icon
         background-color: $dark-color
         &:after, &:before
@@ -79,7 +78,6 @@
 @media (max-width: 992px)
   header, .header-white
     .header
-      // position: fixed
       &__logo
         width: 150px
       &__btn
@@ -90,8 +88,10 @@
   header, .header-white
     .header
       &__logo
-        width: 70px
+        width: 80px
         background: url(../img/logo/logo-mini.png) center center no-repeat
+        // background: url(../img/logo/logo-light.svg) center left no-repeat
+        // background-size: auto
       &__btn
         &:first-child
           display: none
@@ -101,9 +101,7 @@
 
 @media (max-width: 576px)
   header, .header-white
-    padding: 25px 0 5px
     .header
-      &__logo
       &__btn
         &:last-child
           position: fixed
@@ -119,9 +117,11 @@
           transform: translateX(-50%)
         &:last-child
           margin-right: 0
+  .header
+    padding: 25px 0 5px
   .header-white
+    padding: 25px 0 5px
     .header
-      &__logo
       &__btn
         &:last-child
           background-color: rgba($white, 0.6)
