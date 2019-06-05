@@ -91,6 +91,7 @@ window.addEventListener('DOMContentLoaded', function () {
       endTouch = parseInt(eventTouch.clientX);
       moveSlide();
       e.preventDefault();
+      
     }, false)
   };
 
