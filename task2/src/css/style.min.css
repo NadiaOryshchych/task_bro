@@ -380,17 +380,17 @@ img {
     @media (max-width: 768px) {
       .section__title {
         font-size: 29px; } }
-    .section__title-big {
+    .section__title_big {
       font-family: "Maven Pro Black";
       font-size: 80px;
       line-height: 100px;
       color: #fff; }
       @media (max-width: 992px) {
-        .section__title-big {
+        .section__title_big {
           font-size: 60px;
           line-height: 70px; } }
       @media (max-width: 768px) {
-        .section__title-big {
+        .section__title_big {
           font-size: 35px;
           line-height: 50px; } }
   .section__subtitle {
@@ -412,120 +412,25 @@ img {
       border: 2px solid #ff8484;
       -webkit-box-shadow: 0 0 5px #ff8484;
       box-shadow: 0 0 5px #ff8484; } }
-  .btn-big {
+  .btn_big {
     padding: 0 45px;
     font-size: 18px;
     height: 70px; }
     @media (max-width: 768px) {
-      .btn-big {
+      .btn_big {
         padding: 0 25px;
         font-size: 16px;
         height: 50px; } }
-  .btn-small {
-    margin-right: 5px;
-    margin-left: 5px;
+  .btn_small {
     padding: 0 15px;
     font-size: 16px;
     height: 40px; }
     @media (max-width: 768px) {
-      .btn-small {
+      .btn_small {
         font-size: 14px; } }
-  .btn-colorful {
+  .btn_colorful {
     background-color: #ff5151;
     border: 2px solid #ff5151; }
-  .btn-show-tablet {
-    display: none;
-    margin-top: 20px;
-    margin-right: auto;
-    margin-left: auto; }
-    @media (max-width: 1440px) {
-      .btn-show-tablet {
-        display: block; } }
-  .btn-show-mobile {
-    display: none;
-    margin-top: 20px;
-    margin-right: auto;
-    margin-left: auto; }
-    @media (max-width: 992px) {
-      .btn-show-mobile {
-        display: block; } }
-
-.main {
-  padding: 220px 0 158px;
-  text-align: center;
-  color: #fff;
-  position: relative;
-  z-index: 1; }
-  .main::before {
-    content: '';
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(11, 42, 55, 0.6);
-    z-index: -1; }
-  .main__slider__item {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    z-index: -1; }
-    .main__slider__item:first-child {
-      display: block; }
-    .main__slider__item img {
-      height: 100%;
-      width: 100%;
-      -o-object-fit: cover;
-      object-fit: cover;
-      -o-object-position: top;
-      object-position: top; }
-  .main:after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(11, 42, 55, 0.6);
-    z-index: -1; }
-  .main__title {
-    margin: 0;
-    font-family: "Maven Pro Black";
-    font-size: 80px;
-    color: #8ae2e2; }
-  .main__subtitle {
-    margin-top: 10px;
-    font-family: "Maven Pro Black";
-    font-size: 58px; }
-  .main__description {
-    margin: 35px auto 50px;
-    width: 800px;
-    font-family: "Maven Pro Regular";
-    font-size: 26px; }
-    .main__description-mark {
-      font-family: "Maven Pro Bold";
-      color: #8ae2e2; }
-
-@media (max-width: 992px) {
-  .main {
-    padding: 100px 0; }
-    .main__description {
-      width: 100%; } }
-
-@media (max-width: 768px) {
-  .main {
-    padding: 75px 0 50px; }
-    .main__title {
-      font-size: 54px; }
-    .main__subtitle {
-      font-size: 36px; }
-    .main__description {
-      font-size: 20px; } }
 
 .header {
   position: fixed;
@@ -536,7 +441,7 @@ img {
   z-index: 2;
   -webkit-transition: .3s all ease-in-out;
   transition: .3s all ease-in-out; }
-  .header-inside {
+  .header_inner {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -546,7 +451,7 @@ img {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between; }
-    .header-inside__block {
+    .header_inner__block {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -559,25 +464,28 @@ img {
     background: url(../img/logo/logo-light.svg) center center no-repeat;
     background-size: contain;
     z-index: 3; }
-  .header__btns {
-    margin-left: 20px; }
-  .header__btn:first-child {
-    position: relative;
-    padding-left: 40px; }
-    .header__btn:first-child:before {
-      content: '?';
-      position: absolute;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-      transform: translateY(-50%);
-      left: 13px;
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      font-size: 14px;
-      color: #fff;
-      border: 2px solid #fff;
-      border-radius: 50%; }
+  .header__btn {
+    margin-left: 5px;
+    margin-right: 5px; }
+    .header__btns {
+      margin-left: 20px; }
+    .header__btn:first-child {
+      position: relative;
+      padding-left: 40px; }
+      .header__btn:first-child:before {
+        content: '?';
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        left: 13px;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        font-size: 14px;
+        color: #fff;
+        border: 2px solid #fff;
+        border-radius: 50%; }
   .header__link {
     margin-right: 40px;
     font-family: "Maven Pro Regular";
@@ -588,69 +496,69 @@ img {
       cursor: pointer;
       text-decoration: underline; }
 
-.header-white {
+.header_white {
   background-color: #fff;
   -webkit-box-shadow: 0 0 5px #0b2a37;
   box-shadow: 0 0 5px #0b2a37; }
-  .header-white .header__logo {
+  .header_white .header__logo {
     background: url(../img/logo/logo-dark.svg) center center no-repeat;
     background-size: contain; }
-  .header-white .header__btn {
+  .header_white .header__btn {
     color: #0b2a37;
     border: 2px solid #0b2a37; }
-    .header-white .header__btn:first-child:before {
+    .header_white .header__btn:first-child:before {
       color: #0b2a37;
       border: 2px solid #0b2a37; }
-  .header-white .header__link {
+  .header_white .header__link {
     color: #0b2a37; }
-  .header-white .menu__list__item {
+  .header_white .menu__list__item {
     -webkit-box-shadow: 0 0 5px #0b2a37;
     box-shadow: 0 0 5px #0b2a37; }
-  .header-white .menu__button {
+  .header_white .menu__button {
     color: #0b2a37; }
-    .header-white .menu__button-icon {
+    .header_white .menu__button-icon {
       background-color: #0b2a37; }
-      .header-white .menu__button-icon:after, .header-white .menu__button-icon:before {
+      .header_white .menu__button-icon:after, .header_white .menu__button-icon:before {
         background-color: #0b2a37; }
 
 @media (max-width: 992px) {
-  header .header__logo, .header-white .header__logo {
+  header .header__logo, .header_white .header__logo {
     width: 150px; }
-  header .header__btn:first-child, .header-white .header__btn:first-child {
+  header .header__btn:first-child, .header_white .header__btn:first-child {
     display: none; } }
 
 @media (max-width: 768px) {
-  header .header__logo, .header-white .header__logo {
+  header .header__logo, .header_white .header__logo {
     width: 80px;
     background: url(../img/logo/logo-light.svg) center left no-repeat;
     background-size: auto; }
-  header .header__btn:first-child, .header-white .header__btn:first-child {
+  header .header__btn:first-child, .header_white .header__btn:first-child {
     display: none; }
-  header .header__link, .header-white .header__link {
+  header .header__link, .header_white .header__link {
     margin-right: 20px;
     text-decoration: underline; } }
 
 @media (max-width: 576px) {
-  header .header__btn:last-child, .header-white .header__btn:last-child {
+  header .header__btn:last-child, .header_white .header__btn:last-child {
     position: fixed;
     left: 10px;
     bottom: 10px;
     background-color: rgba(11, 42, 55, 0.6);
     -webkit-box-shadow: 0 0 5px #0b2a37;
     box-shadow: 0 0 5px #0b2a37; }
-  header .header__links, .header-white .header__links {
+  header .header__links, .header_white .header__links {
     position: absolute;
     top: 5px;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%); }
-  header .header__link:last-child, .header-white .header__link:last-child {
+  header .header__link:last-child, .header_white .header__link:last-child {
     margin-right: 0; }
   .header {
     padding: 25px 0 5px; }
-  .header-white {
+  .header_white {
     padding: 25px 0 5px; }
-    .header-white .header__btn:last-child {
+    .header_white .header__btn:last-child {
       background-color: rgba(255, 255, 255, 0.6); } }
 
 .menu {
@@ -732,6 +640,81 @@ img {
     padding-top: 45px;
     width: 290px; } }
 
+.main {
+  position: relative;
+  padding: 220px 0 158px;
+  text-align: center;
+  color: #fff;
+  z-index: 1; }
+  .main__title {
+    margin: 0;
+    font-family: "Maven Pro Black";
+    font-size: 80px;
+    color: #8ae2e2; }
+  .main__subtitle {
+    margin-top: 10px;
+    font-family: "Maven Pro Black";
+    font-size: 58px; }
+  .main__description {
+    margin: 35px auto 50px;
+    width: 800px;
+    font-family: "Maven Pro Regular";
+    font-size: 26px; }
+    .main__description_mark {
+      font-family: "Maven Pro Bold";
+      color: #8ae2e2; }
+
+@media (max-width: 992px) {
+  .main {
+    padding: 100px 0; }
+    .main__description {
+      width: 100%; } }
+
+@media (max-width: 768px) {
+  .main {
+    padding: 75px 0 50px; }
+    .main__title {
+      font-size: 54px; }
+    .main__subtitle {
+      font-size: 36px; }
+    .main__description {
+      font-size: 20px; } }
+
+.slider-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; }
+  .slider-bg:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(11, 42, 55, 0.4);
+    z-index: -1; }
+  .slider-bg__item {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1; }
+    .slider-bg__item:first-child {
+      display: block; }
+    .slider-bg__item img {
+      height: 100%;
+      width: 100%;
+      -o-object-fit: cover;
+      object-fit: cover;
+      -o-object-position: top;
+      object-position: top; }
+
 .question {
   padding: 30px 0;
   font-size: 18px;
@@ -757,7 +740,7 @@ img {
 
 .specialists {
   padding: 95px 0 136px; }
-  .specialists__list {
+  .specialists_inner {
     margin-top: 40px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -802,7 +785,7 @@ img {
 @media (max-width: 768px) {
   .specialists {
     padding: 50px 0; }
-    .specialists__list {
+    .specialists_inner {
       margin-top: 10px; }
     .specialists__block__title {
       margin: 10px 0;
@@ -813,11 +796,11 @@ img {
   width: 100%;
   background-size: cover;
   background-position: right top; }
-  .cover-before-steps {
+  .cover_before-steps {
     background-image: url(../img/cover/cover-1.jpg); }
-  .cover-before-recalls {
+  .cover_before-recalls {
     background-image: url(../img/cover/cover-2.jpg); }
-  .cover-before-preferences {
+  .cover_before-preferences {
     background-image: url(../img/cover/cover-3.jpg); }
 
 @media (max-width: 992px) {
@@ -836,7 +819,7 @@ img {
   padding: 110px 0 55px;
   background-color: #8ae2e2;
   color: #fff; }
-  .steps-inside {
+  .steps_inner {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex; }
@@ -845,11 +828,16 @@ img {
     margin-left: 25px;
     width: 48%;
     text-align: left; }
-  .steps__btn {
+  .steps__btn_screen-xl {
     margin-top: 65px; }
+  .steps__btn_screen-lg {
+    display: none;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto; }
   .steps__list {
     display: block;
-    margin: 0 205px;
+    margin: 0 auto;
     max-width: 300px;
     list-style: none; }
   .steps__item {
@@ -902,10 +890,10 @@ img {
       background: url("../img/steps/icon-step-4.svg") center no-repeat; }
     .steps__item:last-child:after {
       display: none; }
-    .steps__item__title {
+    .steps__item-title {
       font-family: "Maven Pro Bold";
       font-size: 22px; }
-    .steps__item__description {
+    .steps__item-description {
       margin-top: 10px;
       font-family: "Maven Pro Regular";
       font-size: 16px;
@@ -914,7 +902,7 @@ img {
 @media (max-width: 1440px) {
   .steps {
     padding: 100px 0; }
-    .steps-inside {
+    .steps_inner {
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -925,9 +913,12 @@ img {
       width: 100%;
       text-align: center; }
     .steps__list {
-      margin: 20px auto 0; }
-    .steps__btn {
-      display: none; } }
+      margin-top: 20px;
+      margin-bottom: 0; }
+    .steps__btn_screen-xl {
+      display: none; }
+    .steps__btn_screen-lg {
+      display: block; } }
 
 @media (max-width: 992px) {
   .steps {
@@ -961,6 +952,15 @@ img {
   padding: 90px 0 97px; }
   .recalls__title {
     margin-bottom: 25px; }
+  .recalls_inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
   .recalls__block {
     margin-top: 60px;
     margin-right: auto;
@@ -969,15 +969,6 @@ img {
     font-family: "Maven Pro Regular";
     font-size: 16px;
     line-height: 22px; }
-    .recalls__blocks {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-      -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-      justify-content: space-between; }
   .recalls__text {
     position: relative;
     padding: 30px 20px;
@@ -1012,6 +1003,22 @@ img {
     display: block;
     font-family: "Maven Pro Regular"; }
 
+@media (max-width: 1440px) {
+  .recalls__title {
+    margin-bottom: 0; }
+  .recalls__block {
+    max-width: 300px; } }
+
+@media (max-width: 992px) {
+  .recalls {
+    padding: 80px 0; } }
+
+@media (max-width: 768px) {
+  .recalls {
+    padding: 50px 0; }
+    .recalls__block {
+      margin-top: 30px; } }
+
 .slider-dots {
   width: 90%;
   margin: 0 auto;
@@ -1032,33 +1039,17 @@ img {
     border-radius: 50%;
     -webkit-transition: background-color 0.6s ease;
     transition: background-color 0.6s ease; }
-    .slider-dots .dot-active {
+    .slider-dots .dot_active {
       background-color: #0b2a37;
       height: 18px;
       width: 18px; }
-
-@media (max-width: 1440px) {
-  .recalls__title {
-    margin-bottom: 0; }
-  .recalls__block {
-    max-width: 300px; } }
-
-@media (max-width: 992px) {
-  .recalls {
-    padding: 80px 0; } }
-
-@media (max-width: 768px) {
-  .recalls {
-    padding: 50px 0; }
-    .recalls__block {
-      margin-top: 30px; } }
 
 .preferences {
   padding: 165px 0;
   background: url(../img/preferences/logo-shape.jpg) bottom right no-repeat;
   background-size: cover;
   color: #fff; }
-  .preferences-inside {
+  .preferences_inner {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1068,8 +1059,13 @@ img {
     text-align: left;
     margin-top: 85px;
     width: 40%; }
-  .preferences__btn {
+  .preferences__btn_screen-xl {
     margin-top: 55px; }
+  .preferences__btn_screen-lg {
+    display: none;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto; }
   .preferences__list {
     margin-left: 68px;
     margin-right: 190px;
@@ -1114,9 +1110,10 @@ img {
     .preferences__title {
       width: 100%;
       text-align: center; }
-    .preferences__btn {
-      margin-top: 20px;
+    .preferences__btn_screen-xl {
       display: none; }
+    .preferences__btn_screen-lg {
+      display: block; }
     .preferences__list {
       margin-top: 30px;
       margin-left: auto;
@@ -1139,7 +1136,7 @@ img {
   padding: 80px 0 90px;
   color: #fff;
   background-color: #0b2a37; }
-  .footer-inside {
+  .footer_inner {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1185,40 +1182,40 @@ img {
     justify-content: center;
     font-family: "Maven Pro Bold";
     font-size: 22px; }
-    .footer__networks__link {
-      margin-left: 10px;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center; }
+  .footer__link {
+    margin-left: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
   .footer__copyright {
     margin-top: 15px;
     font-family: "Maven Pro Regular";
     font-size: 14px;
     color: gray; }
-  .footer__menu {
-    list-style: none;
-    min-width: 200px; }
-    .footer__menu-block {
+  .footer-menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+    .footer-menu__block {
       margin-left: 35px; }
-      .footer__menu-block:first-child {
+      .footer-menu__block:first-child {
         margin-left: 0; }
-      .footer__menu-blocks {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between; }
-    .footer__menu__title {
+    .footer-menu__title {
       margin-bottom: 40px;
       font-family: "Maven Pro Bold";
       font-size: 22px; }
-    .footer__menu__item {
+    .footer-menu__list {
+      list-style: none;
+      min-width: 200px; }
+    .footer-menu__item {
       margin-top: 10px;
       font-family: "Maven Pro Regular";
       font-size: 16px; }
@@ -1228,7 +1225,7 @@ img {
     padding: 50px 0; }
     .footer__info {
       margin-left: 0; }
-    .footer__menu-block {
+    .footer-menu__block {
       margin-left: 15px; } }
 
 @media (max-width: 992px) {
@@ -1248,16 +1245,16 @@ img {
   .footer__copyright {
     width: 100%;
     text-align: center; }
-  .footer__menu-block {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px; }
-    .footer__menu-block:first-child {
-      margin-left: auto; }
-    .footer__menu-blocks {
-      width: 100%; }
-  .footer__menu__title {
-    margin-bottom: 0; } }
+  .footer-menu {
+    width: 100%; }
+    .footer-menu__block {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 20px; }
+      .footer-menu__block:first-child {
+        margin-left: auto; }
+    .footer-menu__title {
+      margin-bottom: 0; } }
 
 @media (min-width: 576px) and (max-width: 992px) {
   .footer__networks {

@@ -3,7 +3,7 @@
   background: url(../img/preferences/logo-shape.jpg) bottom right no-repeat
   background-size: cover
   color: $white
-  &-inside
+  &_inner
     display: flex
     flex-wrap: wrap-reverse
     // align-items: center
@@ -12,7 +12,13 @@
     margin-top: 85px
     width: 40%
   &__btn
-    margin-top: 55px
+    &_screen-xl
+      margin-top: 55px
+    &_screen-lg
+      display: none
+      margin-top: 20px
+      margin-right: auto
+      margin-left: auto
   &__list
     margin-left: 68px
     margin-right: 190px
@@ -59,8 +65,10 @@
       width: 100%
       text-align: center
     &__btn
-      margin-top: 20px
-      display: none
+      &_screen-xl
+        display: none
+      &_screen-lg
+        display: block
     &__list
       margin-top: 30px
       margin-left: auto

@@ -1,50 +1,9 @@
 .main
+  position: relative
   padding: 220px 0 158px
   text-align: center
   color: $white
-  // background: $dark-color url(../img/main-slider/item-1.jpg) center/cover no-repeat
-  // background-image: url(../img/main-slider/item-1.jpg)
-  // background-color: $dark-color
-  position: relative
   z-index: 1
-  &::before
-    content: ''
-    display: none
-    position: absolute
-    left: 0
-    top: 0
-    height: 100%
-    width: 100%
-    background-color: rgba($dark-color, 0.6)
-    z-index: -1 
-  &__slider
-    // display: none
-    &__item
-      display: none
-      position: absolute
-      top: 0
-      right: 0
-      height: 100%
-      width: 100%
-      z-index: -1
-      // transition: display 0.2s ease 0s
-      &:first-child
-        display: block
-      img
-        height: 100%
-        width: 100%
-        object-fit: cover
-        object-position: top
-  &:after
-    content: ''
-    display: block
-    position: absolute
-    top: 0
-    left: 0
-    height: 100%
-    width: 100%
-    background-color: rgba($dark-color, 0.6)
-    z-index: -1
   &__title
     margin: 0
     font-family: $font-black
@@ -59,7 +18,7 @@
     width: 800px
     font-family: $font-regular
     font-size: 26px
-    &-mark
+    &_mark
       font-family: $font-bold
       color: $light-color
   

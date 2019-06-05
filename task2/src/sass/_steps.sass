@@ -2,7 +2,7 @@
   padding: 110px 0 55px
   background-color: $light-color
   color: $white
-  &-inside
+  &_inner
     display: flex
   &__title
     margin-top: 45px
@@ -12,10 +12,16 @@
     width: 48%
     text-align: left
   &__btn
-    margin-top: 65px
+    &_screen-xl
+      margin-top: 65px
+    &_screen-lg
+      display: none
+      margin-top: 20px
+      margin-right: auto
+      margin-left: auto
   &__list
     display: block
-    margin: 0 205px
+    margin: 0 auto
     max-width: 300px
     list-style: none
   &__item
@@ -72,10 +78,10 @@
     &:last-child
       &:after
         display: none
-    &__title
+    &-title
       font-family: $font-bold
       font-size: 22px
-    &__description
+    &-description
       margin-top: 10px
       font-family: $font-regular
       font-size: 16px
@@ -84,7 +90,7 @@
 @media (max-width: 1440px)
   .steps
     padding: 100px 0
-    &-inside
+    &_inner
       flex-direction: column
     &__title
       margin-top: 0
@@ -92,9 +98,13 @@
       width: 100%
       text-align: center
     &__list
-      margin: 20px auto 0
+      margin-top: 20px
+      margin-bottom: 0
     &__btn
-      display: none
+      &_screen-xl
+        display: none
+      &_screen-lg
+        display: block
 
 @media (max-width: 992px)
   .steps
