@@ -18,11 +18,11 @@ window.addEventListener('DOMContentLoaded', function() {
     if (window.innerWidth > 768) {
       const slidesBg = document.querySelectorAll('.slider-bg__item');
       let currentSlide = 0;
-      let slider = setTimeout(function moveSlides() {
+      setTimeout(function moveSlides() {
         slidesBg[currentSlide].style.display = 'none';
         currentSlide = (currentSlide + 1) % slidesBg.length;
         slidesBg[currentSlide].style.display = 'block';
-        slider = setTimeout(moveSlides, 5000);
+        setTimeout(moveSlides, 5000);
       }, 5000);
     }
 
@@ -51,8 +51,9 @@ window.addEventListener('DOMContentLoaded', function() {
         dots[slideIndex - 1].classList.add('dot_active');
       }
 
-      dots.forEach((item) => item.style.display = 'inline-block');
       showSlides(slideIndex);
+
+      dots.forEach((item) => item.style.display = 'inline-block');
       dotsWrap.addEventListener('click', function(e) {
         for (let i = 0; i < dots.length + 1; i++) {
           if (e.target == dots[i - 1] && e.target.classList.contains('dot')) {
