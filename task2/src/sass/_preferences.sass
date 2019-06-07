@@ -6,7 +6,6 @@
   &_inner
     display: flex
     flex-wrap: wrap-reverse
-    // align-items: center
   &__title
     text-align: left
     margin-top: 85px
@@ -16,12 +15,9 @@
       margin-top: 55px
     &_screen-lg
       display: none
-      margin-top: 20px
-      margin-right: auto
-      margin-left: auto
+      margin: 20px auto 0
   &__list
-    margin-left: 68px
-    margin-right: 190px
+    margin: 0 190px 0 68px
     max-width: 500px
     text-align: left
     font-family: $font-regular
@@ -54,8 +50,7 @@
     &__title
       text-align: right
     &__list
-      margin-left: 0
-      margin-right: 0
+      margin: 0
       width: 100%
 
 @media (max-width: 992px)
@@ -70,9 +65,7 @@
       &_screen-lg
         display: block
     &__list
-      margin-top: 30px
-      margin-left: auto
-      margin-right: auto
+      margin: 30px auto 0
 
 @media (max-width: 768px)
   .preferences

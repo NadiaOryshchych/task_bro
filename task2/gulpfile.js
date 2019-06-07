@@ -3,29 +3,27 @@ const rename = require('gulp-rename'); // Переименование файл�
 const sass = require('gulp-sass'); // переводит SASS в CSS
 const autoprefixer = require('gulp-autoprefixer'); // Проставлет вендорные префиксы в CSS для поддержки старых браузеров
 const sourcemaps = require('gulp-sourcemaps');
+const uglify = require('gulp-uglify-es'); // Минимизация javascript
+const minify = require('gulp-minify'); // Минимизация javascript 
 const browserSync = require('browser-sync').create();
 
-
-//   cssnano = require("gulp-cssnano"), // Минимизация CSS
+// cssnano = require("gulp-cssnano"), // Минимизация CSS
 // ещё почитать про gulp-clean-css
-//   imagemin = require('gulp-imagemin'), // Сжатие изображений
 //   concat = require("gulp-concat"), // Объединение файлов - конкатенация
-//   uglify = require("gulp-uglify"), // Минимизация javascript
-// jshint ??
+// jshint / eslint ??
+// imagemin = require('gulp-imagemin'), // Сжатие изображений
 // Tinypng — сжатие изображений. Работает по той же аналогии, что и imagemin, но сжимает значительно лучше.
 
-function css_style(done) {
+// CSS task
+function cssStyle(done) {
   gulp.src('./src/sass/**/*.sass')
     .pipe(sourcemaps.init())
     .pipe(sass({
-      errorLogToConsole: true
-      // outputStyle: 'compressed'
+      errorLogToConsole: true,
+      outputStyle: 'compressed'
     }))
     .on('error', console.error.bind(console))
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions'],
-      cascade: false
-    }))
+    .pipe(autoprefixer())
     .pipe(rename({
       dirname: '.',
       basename: 'style',
@@ -36,6 +34,14 @@ function css_style(done) {
   done();
 }
 
+// JS task
+function compressedJs() {
+  return gulp.src('./src/js/*.js')
+    .pipe(minify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('.src/js'));
+}
+
 function serve(done) {
   browserSync.init({
     server: {
@@ -43,7 +49,6 @@ function serve(done) {
     },
     port: 3000
   });
-
   done();
 }
 
@@ -52,17 +57,19 @@ function browserReload(done) {
   done();
 }
 
-function watchSass() {
-  gulp.watch('./src/sass/**/*', css_style);
-}
+// function watchSass() {
+//   gulp.watch('./src/sass/**/*', cssStyle);
+// }
+
+// function watchJs() {
+//   gulp.watch('./src/js/**/*.js', gulp.parallel(compressedJs));
+// }
+
 function watchFiles() {
   gulp.watch('./src/**/*', browserReload);
   gulp.watch('./src/**/*.html', browserReload);
-  gulp.watch('./src/**/*.php', browserReload);
-  gulp.watch('./src/**/*.js', browserReload);
+  gulp.watch('./src/**/*.css', gulp.parallel(cssStyle, browserReload));
+  gulp.watch('./src/**/*.js', gulp.parallel(compressedJs, browserReload));
 }
 
-// gulp.task('default', gulp.series(hello, watchSass));
-gulp.task('default', gulp.parallel(serve, watchSass, watchFiles ));
-
-// exports.default = defaultSomeTask;
+gulp.task('default', gulp.parallel(serve, watchFiles));

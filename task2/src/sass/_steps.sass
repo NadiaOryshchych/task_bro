@@ -5,10 +5,7 @@
   &_inner
     display: flex
   &__title
-    margin-top: 45px
-    margin-left: 25px
-    // margin-left: 2%
-    // width: 50%
+    margin: 45px 0 0 25px
     width: 48%
     text-align: left
   &__btn
@@ -16,9 +13,7 @@
       margin-top: 65px
     &_screen-lg
       display: none
-      margin-top: 20px
-      margin-right: auto
-      margin-left: auto
+      margin: 20px auto 0
   &__list
     display: block
     margin: 0 auto
@@ -42,8 +37,7 @@
       display: block
       width: 255px
       height: 191px
-      background-image: url('../img/steps/arrow.svg')
-      background-repeat: no-repeat
+      background: url('../img/steps/arrow.svg') no-repeat
       background-size: cover
       z-index: 1
     &:nth-child(odd)
@@ -93,13 +87,11 @@
     &_inner
       flex-direction: column
     &__title
-      margin-top: 0
-      margin-left: 0
+      margin: 0
       width: 100%
       text-align: center
     &__list
       margin-top: 20px
-      margin-bottom: 0
     &__btn
       &_screen-xl
         display: none
@@ -135,4 +127,3 @@
         &:before
           top: 0
           left: -80px
-     

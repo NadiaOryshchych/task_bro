@@ -1,8 +1,7 @@
 
 .slider-dots
   width: 90%
-  margin: 0 auto
-  margin-top: 20px
+  margin: 20px auto 0
   display: flex
   justify-content: center
   .dot
@@ -18,3 +17,8 @@
       background-color: $dark-color
       height: 18px
       width: 18px
+
+@media (max-width: 768px)
+  .slider-dots
+    .dot
+      display: inline-block
