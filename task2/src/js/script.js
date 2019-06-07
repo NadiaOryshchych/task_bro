@@ -1,10 +1,10 @@
 window.addEventListener('DOMContentLoaded', function() {
   'use strict';
-
+  
   (function() {
     // зміна стилів при фіксованому хедері
     const header = document.querySelector('.header');
-    window.addEventListener('scroll', function(e) {
+    window.addEventListener('scroll', function() {
       const classList = header.classList;
       if (window.scrollY > 100) {
         classList.add('header_white');
@@ -12,6 +12,7 @@ window.addEventListener('DOMContentLoaded', function() {
         classList.remove('header_white');
       }
     });
+
 
     // слайдер для main
     if (window.innerWidth > 768) {
@@ -24,6 +25,8 @@ window.addEventListener('DOMContentLoaded', function() {
         slider = setTimeout(moveSlides, 5000);
       }, 5000);
     }
+
+
     // слайдер для recalls
     if (window.innerWidth <= 768) {
       let slideIndex = 1;
