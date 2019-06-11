@@ -59,7 +59,7 @@
     startTouch = parseInt(eventTouch.clientX);
     e.preventDefault();
   }, false);
-  
+
   sliderRecalls.addEventListener('touchend', function (e) {
     const eventTouch = e.changedTouches[0];
     endTouch = parseInt(eventTouch.clientX);

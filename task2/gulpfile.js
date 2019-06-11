@@ -39,7 +39,7 @@ function cssStyle(done) {
 // JS task
 function compressedJs(done) {
   gulp.src('src/js/*.js')
-    // .pipe(terser())
+    .pipe(terser())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('dist/js/'))
     .pipe(browserSync.stream());
