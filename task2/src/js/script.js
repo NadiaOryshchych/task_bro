@@ -1,8 +1,18 @@
 'use strict';
   
 (function() {
-  // зміна стилів при фіксованому хедері
   const header = document.querySelector('.header');
+  const slidesBg = document.querySelectorAll('.slider-bg__item');
+  let currentSlide = 0;
+  let slideIndex = 1;
+  let startTouch = 0;
+  let endTouch = 0;
+  const sliderRecalls = document.querySelector('.recalls_inner');
+  const slidesRecalls = document.querySelectorAll('.recalls__block');
+  const dotsWrap = document.querySelector('.slider-dots');
+  const dots = document.querySelectorAll('.dot');
+
+  // зміна стилів при фіксованому хедері
   window.addEventListener('scroll', function() {
     const classList = header.classList;
     if (window.scrollY > 100) {
@@ -14,8 +24,6 @@
 
   // слайдер для main
   if (window.innerWidth > 768) {
-    const slidesBg = document.querySelectorAll('.slider-bg__item');
-    let currentSlide = 0;
     setTimeout(function moveSlides() {
       slidesBg[currentSlide].style.display = 'none';
       currentSlide = (currentSlide + 1) % slidesBg.length;
@@ -25,14 +33,6 @@
   }
 
   // слайдер для recalls
-  let slideIndex = 1;
-  let startTouch = 0;
-  let endTouch = 0;
-  let dist = 0;
-  const slidesRecalls = document.querySelectorAll('.recalls__block');
-  const dotsWrap = document.querySelector('.slider-dots');
-  const dots = document.querySelectorAll('.dot');
-
   function showSlides(n) {
     if (n > slidesRecalls.length) {
       slideIndex = 1;
@@ -49,45 +49,27 @@
   dotsWrap.addEventListener('click', function (e) {
     for (let i = 0; i < dots.length + 1; i++) {
       if (e.target == dots[i - 1] && e.target.classList.contains('dot')) {
-        activeSlide(i);
+        showSlides(slideIndex = i);
       }
     }
   });
 
-  function activeSlide(n) {
-    showSlides(slideIndex = n);
-  }
-
-  function plussSlides(n) {
-    showSlides(slideIndex += n);
-  }
-
-  function moveSlide() {
-    if (startTouch > endTouch || dist < 0) {
-      plussSlides(1);
-    } else if (startTouch < endTouch || dist > 0) {
-      plussSlides(-1);
+  sliderRecalls.addEventListener('touchstart', function (e) {
+    const eventTouch = e.changedTouches[0];
+    startTouch = parseInt(eventTouch.clientX);
+    e.preventDefault();
+  }, false);
+  
+  sliderRecalls.addEventListener('touchend', function (e) {
+    const eventTouch = e.changedTouches[0];
+    endTouch = parseInt(eventTouch.clientX);
+    if (startTouch > endTouch && (startTouch - endTouch) > 10 ) {
+      showSlides(slideIndex += 1);
+    } else if (startTouch < endTouch && (startTouch - endTouch) < -10) {
+      showSlides(slideIndex += (-1));
     }
-  }
-
-  for (let i = 0; i < slidesRecalls.length; i++) {
-    slidesRecalls[i].addEventListener('touchstart', function (e) {
-      const eventTouch = e.changedTouches[0];
-      startTouch = parseInt(eventTouch.clientX);
-      e.preventDefault();
-    }, false);
-    slidesRecalls[i].addEventListener('touchmove', function (e) {
-      const eventTouch = e.changedTouches[0];
-      dist = parseInt(eventTouch.clientX) - startTouch;
-      e.preventDefault();
-    }, false);
-    slidesRecalls[i].addEventListener('touchend', function (e) {
-      const eventTouch = e.changedTouches[0];
-      endTouch = parseInt(eventTouch.clientX);
-      moveSlide();
-      e.preventDefault();
-    }, false);
-  }
+    e.preventDefault();
+  }, false);
 
   if (window.innerWidth <= 768) {
     showSlides(slideIndex);

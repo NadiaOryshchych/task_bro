@@ -29,8 +29,9 @@ function cssStyle(done) {
       dirname: '.',
       basename: 'style',
       suffix: '.min'}))
-    .pipe(sourcemaps.write('dist/css/'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist/css/'))
+    .pipe(gulp.dest('src/css/'))
     .pipe(browserSync.stream());
   done();
 }
@@ -38,7 +39,7 @@ function cssStyle(done) {
 // JS task
 function compressedJs(done) {
   gulp.src('src/js/*.js')
-    .pipe(terser())
+    // .pipe(terser())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('dist/js/'))
     .pipe(browserSync.stream());
@@ -83,10 +84,10 @@ function browserReload(done) {
 // }
 
 function watchFiles() {
-  gulp.watch('./src/**/*', browserReload);
   gulp.watch('./src/**/*.html', gulp.parallel(minifyHtml, browserReload));
-  gulp.watch('./src/**/*.css', gulp.parallel(cssStyle, browserReload));
+  gulp.watch('./src/sass/**/*', gulp.parallel(cssStyle, browserReload));
   gulp.watch('./src/**/*.js', gulp.parallel(compressedJs, browserReload));
+  gulp.watch('./src/**/*', browserReload);
 }
 
 gulp.task('default', gulp.parallel(serve,  watchFiles));
