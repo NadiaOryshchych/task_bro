@@ -4,9 +4,11 @@ import Row from '../row';
 const CellWrap = ({countCell, countRow, sizeCell}) => {
   const itemsRow = [];
   for (let i = 0; i < countRow; i++) {
+    const idRow = i;
     itemsRow.push(
-      <Row key={i} countCell={countCell} countRow={countRow} sizeCell={sizeCell}/>
+      <Row key={i} idRow={i} countCell={countCell} countRow={countRow} sizeCell={sizeCell}/>
     )
+    console.log(idRow)
   }
 
   return ( 
