@@ -1,14 +1,12 @@
 import React from 'react';
 import Cell from '../cell';
 
-const Row = ({countCell, sizeCell}) => {
+const Row = ({countCell, sizeCell, idRow, onMouseEnterHandler}) => {
   const itemsCell = [];
   for (let i = 0; i < countCell; i++) {
-    const idCol = i;
     itemsCell.push(
-      <Cell key={i} idCell={i} sizeCell={sizeCell}/>
+      <Cell key={i} idRow={idRow} idCell={i} sizeCell={sizeCell} onMouseEnterHandler={(e) => {onMouseEnterHandler(e)}}/>
     )
-    console.log(idCol)
   }
 
   return (

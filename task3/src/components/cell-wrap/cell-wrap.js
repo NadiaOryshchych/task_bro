@@ -1,21 +1,31 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Row from '../row';
 
-const CellWrap = ({countCell, countRow, sizeCell}) => {
-  const itemsRow = [];
-  for (let i = 0; i < countRow; i++) {
-    const idRow = i;
-    itemsRow.push(
-      <Row key={i} idRow={i} countCell={countCell} countRow={countRow} sizeCell={sizeCell}/>
-    )
-    console.log(idRow)
-  }
+class CellWrap extends Component {
 
-  return ( 
-    <div className = "boxWrap" >
-      {itemsRow}
-    </div>
-  )
+  render() {
+    const {countCell, countRow, sizeCell, onMouseEnterHandler} = this.props;
+
+    
+    const itemsRow = [];
+    for (let i = 0; i < countRow; i++) {
+      itemsRow.push(
+          <Row 
+            key={i} 
+            idRow={i} 
+            countCell={countCell} 
+            countRow={countRow} 
+            sizeCell={sizeCell} 
+            onMouseEnterHandler={(e) => {onMouseEnterHandler(e)}}/>
+        )
+    }
+
+    return ( 
+      <div className = "boxWrap" >
+        {itemsRow}
+      </div>
+    )
+  }
 }
 
 export default CellWrap;
