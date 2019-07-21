@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: content-box;
 }
 
 .app {
@@ -14,14 +15,17 @@
   border: 1px solid #48aae6;
 }
 
-.box-row {
-  display: flex;
+.box-wrap {
+  /* display: flex;
+  flex-wrap: wrap; */
+  position: relative;
+  border: 1px solid #48aae6;
 }
 
-.box,
-.button {
-  background-color: #48aae6;
+.box-table {
+  position: absolute;
   border: 1px solid #fff;
+  background-color: #48aae6;
 }
 
 .button {
@@ -34,7 +38,7 @@
   font-weight: bold;
   outline: none;
   border: 2px solid #fff;
-  box-sizing: content-box;
+  background-color: #48aae6;
   background-color: #f3a500;
   transition: 0.2s;
 }
