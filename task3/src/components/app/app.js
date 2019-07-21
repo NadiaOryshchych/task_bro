@@ -22,8 +22,8 @@ class App extends Component {
       for (let j = 0; j < initialWidth; j++) {
         boxes[i].push(
           <div
-            className="box-table" 
-            style={ {width: `${cellSize}px`, height: `${cellSize}px`, top: `${i*52+1}px`, left: `${j*52+1}px`}} 
+            className="cell" 
+            style={ {width: `${cellSize}px`, height: `${cellSize}px`}} 
             idrow={i}
             idcol={j}
             key={`${i}${j}`}
@@ -35,7 +35,7 @@ class App extends Component {
     this.setState({boxTable: boxes});
   }
 
-  appendColums = () => {
+  appendColumns = () => {
     const { cellSize } = this.props;
     const { boxTable } = this.state;
     const rows = [];
@@ -44,8 +44,8 @@ class App extends Component {
       let newRow = row.slice(0);
       newRow.push(
         <div
-          className="box-table" 
-          style={ {width: `${cellSize}px`, height: `${cellSize}px`, top: `${i*52+1}px`, left: `${colCount*52+1}px`}} 
+          className="cell" 
+          style={ {width: `${cellSize}px`, height: `${cellSize}px`}} 
           idrow={i}
           idcol={colCount}
           key={`${i}${colCount}`}
@@ -68,8 +68,8 @@ class App extends Component {
     for (let i = 0; i < colCount; i++) {
       newRow.push(
         <div
-          className="box-table" 
-          style={ {width: `${cellSize}px`, height: `${cellSize}px`, top: `${newRowI*52+1}px`, left: `${i*52+1}px`}} 
+          className="cell" 
+          style={ {width: `${cellSize}px`, height: `${cellSize}px`}} 
           idrow={newRowI}
           idcol={i}
           key={`${newRowI}${i}`}
@@ -82,21 +82,37 @@ class App extends Component {
   }
 
   removeColumns = () => {
-    if (this.state.initialWidth > 1) {
-      this.setState({initialWidth: this.state.initialWidth - 1});
+    const { boxTable } = this.state;
+    if (boxTable[0].length > 1) {
+      const indexCol = 1;
+      let rows = [];
+      boxTable.forEach(row => {
+        const newRow = [
+          ...row.slice(0, indexCol),
+          ...row.slice(indexCol + 1)
+        ];
+        rows.push(newRow);
+      });
+      this.setState({boxTable: rows});
     }
   }
 
   removeRows = () => {
     const { boxTable } = this.state;
-    let newRows = [];
-    
-
+    if (boxTable.length > 1) {
+      const indexRow = 1;
+      let rows = [
+        ...boxTable.slice(0, indexRow),
+        ...boxTable.slice(indexRow + 1)
+      ];
+      this.setState({boxTable: rows});
+    }
   }
 
   onMouseEnterHandler = (e) => {
     console.log(e.target.attributes['idrow'].value, e.target.attributes['idcol'].value);
     console.log(this.state.boxTable);
+    console.log(e.target);
   }
   
   render() {
@@ -134,8 +150,8 @@ class App extends Component {
 
     return (
     <div className="app" style={styledApp}>
-      <div className = "box-wrap" 
-          style={{height: `${rowCount*52+2}px`, width: `${colCount*52+2}px` }}>
+      <div className = "table" 
+          style={{height: `${rowCount*52}px`, width: `${colCount*52}px` }}>
         {boxTable}
       </div>
       <Button 
@@ -147,7 +163,7 @@ class App extends Component {
         classBtn={['minus', 'minus-row']} 
         styledBtn={{...posMinusRow, ...sizedBtn}} />
       <Button 
-        changeCountCell={() => {this.appendColums()}} 
+        changeCountCell={() => {this.appendColumns()}} 
         classBtn={['plus', 'plus-col']} 
         styledBtn={{...posPlusCol, ...sizedBtn}} />
       <Button 

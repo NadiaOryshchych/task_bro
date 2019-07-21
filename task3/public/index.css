@@ -10,20 +10,14 @@
   position: relative;
 }
 
-.boxWrap {
+.table {
+  display: flex;
+  flex-wrap: wrap;
   padding: 1px;
   border: 1px solid #48aae6;
 }
 
-.box-wrap {
-  /* display: flex;
-  flex-wrap: wrap; */
-  position: relative;
-  border: 1px solid #48aae6;
-}
-
-.box-table {
-  position: absolute;
+.cell {
   border: 1px solid #fff;
   background-color: #48aae6;
 }
