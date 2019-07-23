@@ -6,12 +6,15 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      boxTable: []
+      boxTable: [],
+      coordsX: '',
+      coordsY: ''
     }
   }
   
   componentDidMount() {
     this.createTable();
+    console.log(this.state.boxTable);
   }
 
   createTable = () => {
@@ -24,15 +27,66 @@ class App extends Component {
           <div
             className="cell" 
             style={ {width: `${cellSize}px`, height: `${cellSize}px`}} 
-            idrow={i}
-            idcol={j}
+            // data-idrow={i}
+            // data-idcol={j}
             key={`${i}${j}`}
-            onMouseEnter={(e) => {this.onMouseEnterHandler(e)}} >
+            onMouseEnter={(e) => {this.onMouseEnterCell(e)}} >
           </div>
         )
       }
     }
     this.setState({boxTable: boxes});
+    console.log(this.state.boxTable);
+  }
+
+  putIndex = () => {
+    const { boxTable } = this.state;
+    console.log('==>', boxTable);
+    let newTable = [];
+    boxTable.forEach((row, i) => {
+      // row.forEach((col, j) => {
+      //   col.setAttribute('data-index-row', [i + 1]);
+      //   col.setAttribute('data-index-col', [j + 1]);
+      // });
+      let newRow = row.slice(0);
+      console.log(newRow);
+      newTable.push(newRow);
+    });
+    console.log(newTable);
+    this.setState({boxTable: newTable});
+  }
+
+  showMinus(e) {
+    const target = e.target;
+    const classList = target.classList;
+    const dataset = target.dataset;
+    console.log(dataset);
+    if (classList.contains('cell')) {
+      this.setState({
+        coordsX: dataset.idrow,
+        coordsY: dataset.idcol
+      });
+      console.log(1)
+      // this.minusRow.setAttribute('data-index', dataset.indexRow);
+      // this.minusCol.setAttribute('data-index', dataset.indexCol);
+      // this.minusRow.style.top = this.sizeBox * dataset.indexRow + 3 + 'px';
+      // this.minusCol.style.left = this.sizeBox * dataset.indexCol + 3 + 'px';
+      // if (this.countBox().countRows > 1) {
+      //   this.minusRow.style.display = 'flex';
+      // }
+      // if (this.countBox().countCells > 1) {
+      //   this.minusCol.style.display = 'flex';
+      // }
+    }
+    // if (classList.contains('minus-col')) {
+    //   this.minusRow.style.display = 'none';
+    // }
+    // if (classList.contains('minus-row')) {
+    //   this.minusCol.style.display = 'none';
+    // }
+    // if (classList.contains('app')) {
+    //   this.hideMinus();
+    // }
   }
 
   appendColumns = () => {
@@ -46,15 +100,17 @@ class App extends Component {
         <div
           className="cell" 
           style={ {width: `${cellSize}px`, height: `${cellSize}px`}} 
-          idrow={i}
-          idcol={colCount}
+          // idrow={i}
+          // idcol={colCount}
           key={`${i}${colCount}`}
-          onMouseEnter={(e) => {this.onMouseEnterHandler(e)}} >
+          onMouseEnter={(e) => {this.onMouseEnterCell(e)}} >
         </div>
       );
       rows.push(newRow);
     });
-    this.setState({boxTable: rows});
+    this.setState({ boxTable: rows });
+    console.log(this.state.boxTable);
+    this.putIndex();
   }
 
   appendRows = () => {
@@ -73,12 +129,14 @@ class App extends Component {
           idrow={newRowI}
           idcol={i}
           key={`${newRowI}${i}`}
-          onMouseEnter={(e) => {this.onMouseEnterHandler(e)}} >
+          onMouseEnter={(e) => {this.onMouseEnterCell(e)}} >
         </div>
       );
     }
     rows.push(newRow);
-    this.setState({boxTable: rows});
+    this.setState({ boxTable: rows });
+    debugger;
+    this.putIndex();
   }
 
   removeColumns = () => {
@@ -109,15 +167,27 @@ class App extends Component {
     }
   }
 
-  onMouseEnterHandler = (e) => {
-    console.log(e.target.attributes['idrow'].value, e.target.attributes['idcol'].value);
-    console.log(this.state.boxTable);
+  onMouseEnterCell = (e) => {
+    // console.log(2);
+    // console.log(e.target.attributes['idrow'].value, e.target.attributes['idcol'].value);
+    // console.log(this.state.boxTable);
+    console.log(e);
     console.log(e.target);
+  }
+  onMouseEnterTable = (e) => {
+    // console.log(1);
+    // console.log(e.target.attributes['idrow'].value, e.target.attributes['idcol'].value);
+    // console.log(this.state.boxTable);
+    console.log(e);
+    console.log(e.target);
+    console.log(e.target.length);
+    console.log(e.target.classList);
+    console.log(e.target.dataset);
   }
   
   render() {
     const {cellSize} = this.props;
-    const {boxTable} = this.state;
+    const {boxTable, coordsX, coordsY} = this.state;
     console.log(boxTable);
 
     const styledApp = {
@@ -149,9 +219,11 @@ class App extends Component {
     const rowCount = boxTable.length;
 
     return (
-    <div className="app" style={styledApp}>
+    <div className="app" style={styledApp}
+      onMouseMove={(e) => {this.showMinus(e)}} >
       <div className = "table" 
-          style={{height: `${rowCount*52}px`, width: `${colCount*52}px` }}>
+          style={{height: `${rowCount*52}px`, width: `${colCount*52}px` }}
+          >
         {boxTable}
       </div>
       <Button 
