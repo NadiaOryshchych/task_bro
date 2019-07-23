@@ -27,8 +27,8 @@ class App extends Component {
           <div
             className="cell" 
             style={ {width: `${cellSize}px`, height: `${cellSize}px`}} 
-            // data-idrow={i}
-            // data-idcol={j}
+            data-idrow={i}
+            data-idcol={j}
             key={`${i}${j}`}
             onMouseEnter={(e) => {this.onMouseEnterCell(e)}} >
           </div>
@@ -37,6 +37,7 @@ class App extends Component {
     }
     this.setState({boxTable: boxes});
     console.log(this.state.boxTable);
+    this.putIndex();
   }
 
   putIndex = () => {
@@ -53,7 +54,7 @@ class App extends Component {
       newTable.push(newRow);
     });
     console.log(newTable);
-    this.setState({boxTable: newTable});
+    // this.setState({boxTable: newTable});
   }
 
   showMinus(e) {
@@ -66,7 +67,6 @@ class App extends Component {
         coordsX: dataset.idrow,
         coordsY: dataset.idcol
       });
-      console.log(1)
       // this.minusRow.setAttribute('data-index', dataset.indexRow);
       // this.minusCol.setAttribute('data-index', dataset.indexCol);
       // this.minusRow.style.top = this.sizeBox * dataset.indexRow + 3 + 'px';
@@ -109,8 +109,6 @@ class App extends Component {
       rows.push(newRow);
     });
     this.setState({ boxTable: rows });
-    console.log(this.state.boxTable);
-    this.putIndex();
   }
 
   appendRows = () => {
@@ -135,8 +133,6 @@ class App extends Component {
     }
     rows.push(newRow);
     this.setState({ boxTable: rows });
-    debugger;
-    this.putIndex();
   }
 
   removeColumns = () => {
@@ -171,18 +167,18 @@ class App extends Component {
     // console.log(2);
     // console.log(e.target.attributes['idrow'].value, e.target.attributes['idcol'].value);
     // console.log(this.state.boxTable);
-    console.log(e);
-    console.log(e.target);
+    // console.log(e);
+    // console.log(e.target);
   }
   onMouseEnterTable = (e) => {
     // console.log(1);
     // console.log(e.target.attributes['idrow'].value, e.target.attributes['idcol'].value);
     // console.log(this.state.boxTable);
-    console.log(e);
-    console.log(e.target);
-    console.log(e.target.length);
-    console.log(e.target.classList);
-    console.log(e.target.dataset);
+    // console.log(e);
+    // console.log(e.target);
+    // console.log(e.target.length);
+    // console.log(e.target.classList);
+    // console.log(e.target.dataset);
   }
   
   render() {
