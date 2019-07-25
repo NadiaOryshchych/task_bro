@@ -8,13 +8,38 @@ class App extends Component {
     this.state = {
       boxTable: [],
       coordsX: '',
-      coordsY: ''
+      coordsY: '',
+      displayCol: '',
+      displayRow: ''
     }
   }
   
   componentDidMount() {
     this.createTable();
-    console.log(this.state.boxTable);
+  }
+
+  putIndex = (arr) => {
+    const { boxTable } = this.state;
+    console.log(arr);
+    let newTable = [];
+    arr.forEach((row, i) => {
+      // row.pop();
+      // console.log(row.pop());
+      row.forEach((col, j) => {
+        // col.props.idrow = 4;
+        // console.log(col)
+        // col.props.idrow = i + 1;
+        // col.dynamicAttributes('data-idrow', [i + 1]);
+        // col.props.setAttribute('data-idcol', [j + 1]);
+      });
+      // let newRow = row.slice(0);
+      // console.log(newRow);
+      // newTable.push(newRow);
+    });
+    console.log(arr);
+    // this.setState({boxTable: newTable});
+    // return newTable;
+    return arr;
   }
 
   createTable = () => {
@@ -27,66 +52,49 @@ class App extends Component {
           <div
             className="cell" 
             style={ {width: `${cellSize}px`, height: `${cellSize}px`}} 
-            data-idrow={i}
-            data-idcol={j}
+            data-idrow={i+1}
+            data-idcol={j+1}
             key={`${i}${j}`}
             onMouseEnter={(e) => {this.onMouseEnterCell(e)}} >
           </div>
         )
       }
     }
+    this.putIndex(boxes);
     this.setState({boxTable: boxes});
-    console.log(this.state.boxTable);
-    this.putIndex();
-  }
-
-  putIndex = () => {
-    const { boxTable } = this.state;
-    console.log('==>', boxTable);
-    let newTable = [];
-    boxTable.forEach((row, i) => {
-      // row.forEach((col, j) => {
-      //   col.setAttribute('data-index-row', [i + 1]);
-      //   col.setAttribute('data-index-col', [j + 1]);
-      // });
-      let newRow = row.slice(0);
-      console.log(newRow);
-      newTable.push(newRow);
-    });
-    console.log(newTable);
-    // this.setState({boxTable: newTable});
   }
 
   showMinus(e) {
     const target = e.target;
     const classList = target.classList;
     const dataset = target.dataset;
-    console.log(dataset);
+    // console.log(dataset);
     if (classList.contains('cell')) {
       this.setState({
-        coordsX: dataset.idrow,
-        coordsY: dataset.idcol
+        coordsX: dataset.idcol,
+        coordsY: dataset.idrow
       });
-      // this.minusRow.setAttribute('data-index', dataset.indexRow);
-      // this.minusCol.setAttribute('data-index', dataset.indexCol);
-      // this.minusRow.style.top = this.sizeBox * dataset.indexRow + 3 + 'px';
-      // this.minusCol.style.left = this.sizeBox * dataset.indexCol + 3 + 'px';
-      // if (this.countBox().countRows > 1) {
-      //   this.minusRow.style.display = 'flex';
-      // }
-      // if (this.countBox().countCells > 1) {
-      //   this.minusCol.style.display = 'flex';
-      // }
+      // (this.state.boxTable.length > 1) ? this.setState({displayRow: 'flex'}) : this.setState({displayRow: 'none'});
+      // (this.state.boxTable[0].length > 1) ? this.setState({displayCol: 'flex'}) : this.setState({displayCol: 'none'});
+      if (this.state.boxTable.length > 1) {
+        this.setState({displayRow: 'flex'});
+      }
+      if (this.state.boxTable[0].length > 1) {
+        this.setState({displayCol: 'flex'});
+      }
+    } else if (classList.contains('minus-col')) {
+      this.setState({displayRow: 'none'});
+    } else if (classList.contains('minus-row')) {
+      this.setState({displayCol: 'none'});
+    } else if (classList.contains('app')) {
+      this.setState({displayRow: 'none'});
+      this.setState({displayCol: 'none'});
     }
-    // if (classList.contains('minus-col')) {
-    //   this.minusRow.style.display = 'none';
-    // }
-    // if (classList.contains('minus-row')) {
-    //   this.minusCol.style.display = 'none';
-    // }
-    // if (classList.contains('app')) {
-    //   this.hideMinus();
-    // }
+  }
+
+  hideMinus = () => {
+    this.setState({displayRow: 'none'});
+    this.setState({displayCol: 'none'});
   }
 
   appendColumns = () => {
@@ -100,8 +108,8 @@ class App extends Component {
         <div
           className="cell" 
           style={ {width: `${cellSize}px`, height: `${cellSize}px`}} 
-          // idrow={i}
-          // idcol={colCount}
+          idrow={i}
+          idcol={colCount}
           key={`${i}${colCount}`}
           onMouseEnter={(e) => {this.onMouseEnterCell(e)}} >
         </div>
@@ -137,8 +145,8 @@ class App extends Component {
 
   removeColumns = () => {
     const { boxTable } = this.state;
+    const indexCol = this.state.coordsX-1;
     if (boxTable[0].length > 1) {
-      const indexCol = 1;
       let rows = [];
       boxTable.forEach(row => {
         const newRow = [
@@ -148,43 +156,45 @@ class App extends Component {
         rows.push(newRow);
       });
       this.setState({boxTable: rows});
+      if (boxTable[0].length < this.state.coordsX) {
+        this.setState({displayRow: 'none'});
+        this.setState({displayCol: 'none'});
+      }
     }
+    // if (this.state.boxTable[0].length === indexCol) {
+    //   this.setState({displayCol: 'none'});
+    // }
   }
 
   removeRows = () => {
     const { boxTable } = this.state;
     if (boxTable.length > 1) {
-      const indexRow = 1;
+      const indexRow = this.state.coordsY-1;
       let rows = [
         ...boxTable.slice(0, indexRow),
         ...boxTable.slice(indexRow + 1)
       ];
       this.setState({boxTable: rows});
     }
+    console.log(boxTable);
+    // if (boxTable.length < 1) {
+    //   console.log(1);
+    //   this.setState({displayRow: 'none'});
+    // }
   }
 
   onMouseEnterCell = (e) => {
-    // console.log(2);
     // console.log(e.target.attributes['idrow'].value, e.target.attributes['idcol'].value);
     // console.log(this.state.boxTable);
-    // console.log(e);
-    // console.log(e.target);
   }
   onMouseEnterTable = (e) => {
-    // console.log(1);
-    // console.log(e.target.attributes['idrow'].value, e.target.attributes['idcol'].value);
-    // console.log(this.state.boxTable);
-    // console.log(e);
     // console.log(e.target);
-    // console.log(e.target.length);
-    // console.log(e.target.classList);
-    // console.log(e.target.dataset);
+    // console.log(e.target.attributes['idrow'].value, e.target.attributes['idcol'].value);
   }
   
   render() {
     const {cellSize} = this.props;
     const {boxTable, coordsX, coordsY} = this.state;
-    console.log(boxTable);
 
     const styledApp = {
       padding: `${cellSize + 4}px`
@@ -194,19 +204,21 @@ class App extends Component {
       width: `${cellSize}px`,
       height: `${cellSize}px`
     };
-    const posMinusCol = {
+    const styledMinusCol = {
       top: 0,
-      left: `${cellSize + 5}px`
+      left: `${coordsX*(cellSize+2) + 3}px`,
+      display: this.state.displayCol
     }
-    const posMinusRow = {
-      top: `${cellSize + 5}px`,
-      left: 0
+    const styledMinusRow = {
+      top: `${coordsY*(cellSize+2) + 3}px`,
+      left: 0,
+      display: this.state.displayRow
     }
-    const posPlusCol = {
+    const styledPlusCol = {
       top: `${cellSize + 5}px`,
       right: 0
     }
-    const posPlusRow = {
+    const styledPlusRow = {
       bottom: 0,
       left: `${cellSize + 5}px`
     }
@@ -225,19 +237,21 @@ class App extends Component {
       <Button 
         changeCountCell={() => {this.removeColumns()}} 
         classBtn={['minus', 'minus-col']} 
-        styledBtn={{...posMinusCol, ...sizedBtn}} />
+        styledBtn={{...styledMinusCol, ...sizedBtn}}
+        index={coordsX} />
       <Button 
         changeCountCell={() => {this.removeRows()}} 
         classBtn={['minus', 'minus-row']} 
-        styledBtn={{...posMinusRow, ...sizedBtn}} />
+        styledBtn={{...styledMinusRow, ...sizedBtn}}
+        index={coordsY} />
       <Button 
         changeCountCell={() => {this.appendColumns()}} 
         classBtn={['plus', 'plus-col']} 
-        styledBtn={{...posPlusCol, ...sizedBtn}} />
+        styledBtn={{...styledPlusCol, ...sizedBtn}} />
       <Button 
         changeCountCell={() => {this.appendRows()}} 
         classBtn={['plus', 'plus-row']} 
-        styledBtn={{...posPlusRow, ...sizedBtn}} />
+        styledBtn={{...styledPlusRow, ...sizedBtn}} />
     </div>
   );
   }
