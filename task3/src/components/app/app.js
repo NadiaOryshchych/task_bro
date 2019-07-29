@@ -150,10 +150,6 @@ class App extends Component {
     }
   }
 
-  onMouseEnterCell = (e) => {
-    // console.log(e.target.attributes['idrow'].value, e.target.attributes['idcol'].value);
-    // console.log(this.state.boxTable);
-  }
   onMouseEnterTable = (e) => {
     // console.log(e.target);
     // console.log(e.target.attributes['idrow'].value, e.target.attributes['idcol'].value);
@@ -202,8 +198,7 @@ class App extends Component {
             style={{ width: `${cellSize}px`, height: `${cellSize}px` }}
             data-idrow={i + 1}
             data-idcol={cell.idcol}
-            key={`${i}${j}`}
-            onMouseEnter={(e) => { this.onMouseEnterCell(e) }} >
+            key={`${i}${j}`} >
           </div>
         )
       })
