@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Table from '../table';
+// import Table from '../table';
 import Button from '../button';
 
 class App extends Component {
@@ -19,45 +19,25 @@ class App extends Component {
   }
 
   putIndex = (arr) => {
-    const { boxTable } = this.state;
-    console.log(arr);
-    let newTable = [];
     arr.forEach((row, i) => {
-      // row.pop();
-      // console.log(row.pop());
       row.forEach((col, j) => {
-        // col.props.idrow = 4;
-        // console.log(col)
-        // col.props.idrow = i + 1;
-        // col.dynamicAttributes('data-idrow', [i + 1]);
-        // col.props.setAttribute('data-idcol', [j + 1]);
+        col.idrow = i + 1;
+        col.idcol = j + 1;
       });
-      // let newRow = row.slice(0);
-      // console.log(newRow);
-      // newTable.push(newRow);
     });
-    console.log(arr);
-    // this.setState({boxTable: newTable});
-    // return newTable;
     return arr;
   }
 
   createTable = () => {
-    const {initialWidth, initialHeight, cellSize} = this.props;
+    const {initialWidth, initialHeight} = this.props;
     let boxes = [];
     for (let i = 0; i < initialHeight; i++) {
       boxes[i] = [];
       for (let j = 0; j < initialWidth; j++) {
-        boxes[i].push(
-          <div
-            className="cell" 
-            style={ {width: `${cellSize}px`, height: `${cellSize}px`}} 
-            data-idrow={i+1}
-            data-idcol={j+1}
-            key={`${i}${j}`}
-            onMouseEnter={(e) => {this.onMouseEnterCell(e)}} >
-          </div>
-        )
+        boxes[i].push({
+          idrow: '',
+          idcol: ''
+        })
       }
     }
     this.putIndex(boxes);
@@ -98,29 +78,22 @@ class App extends Component {
   }
 
   appendColumns = () => {
-    const { cellSize } = this.props;
     const { boxTable } = this.state;
     const rows = [];
     const colCount = boxTable[0].length;
     boxTable.forEach((row, i) => {
       let newRow = row.slice(0);
-      newRow.push(
-        <div
-          className="cell" 
-          style={ {width: `${cellSize}px`, height: `${cellSize}px`}} 
-          idrow={i}
-          idcol={colCount}
-          key={`${i}${colCount}`}
-          onMouseEnter={(e) => {this.onMouseEnterCell(e)}} >
-        </div>
-      );
+      newRow.push({
+        idrow: i+1,
+        idcol: colCount+1
+      }); 
       rows.push(newRow);
     });
+    this.putIndex(rows);
     this.setState({ boxTable: rows });
   }
 
   appendRows = () => {
-    const { cellSize } = this.props;
     const { boxTable } = this.state;
     const rows = [];
     boxTable.forEach(row => rows.push([...row]));
@@ -128,24 +101,20 @@ class App extends Component {
     const newRowI = boxTable.length;
     const colCount = rows[0].length;
     for (let i = 0; i < colCount; i++) {
-      newRow.push(
-        <div
-          className="cell" 
-          style={ {width: `${cellSize}px`, height: `${cellSize}px`}} 
-          idrow={newRowI}
-          idcol={i}
-          key={`${newRowI}${i}`}
-          onMouseEnter={(e) => {this.onMouseEnterCell(e)}} >
-        </div>
-      );
+      newRow.push({
+        idrow: newRowI+1,
+        idcol: i+1
+      });
     }
     rows.push(newRow);
+    this.putIndex(rows);
     this.setState({ boxTable: rows });
   }
 
   removeColumns = () => {
-    const { boxTable } = this.state;
-    const indexCol = this.state.coordsX-1;
+    const { boxTable, coordsX } = this.state;
+    const indexCol = coordsX - 1;
+
     if (boxTable[0].length > 1) {
       let rows = [];
       boxTable.forEach(row => {
@@ -155,32 +124,30 @@ class App extends Component {
         ];
         rows.push(newRow);
       });
-      this.setState({boxTable: rows});
-      if (boxTable[0].length < this.state.coordsX) {
-        this.setState({displayRow: 'none'});
-        this.setState({displayCol: 'none'});
-      }
+      this.putIndex(rows);
+      this.setState({ boxTable: rows });
     }
-    // if (this.state.boxTable[0].length === indexCol) {
-    //   this.setState({displayCol: 'none'});
-    // }
+
+    if (boxTable[0].length === +(coordsX) || boxTable[0].length === 2) {
+      this.setState({ displayCol: 'none' });
+    }
   }
 
   removeRows = () => {
-    const { boxTable } = this.state;
+    const { boxTable, coordsY } = this.state;
+    const indexRow = coordsY-1;
     if (boxTable.length > 1) {
-      const indexRow = this.state.coordsY-1;
       let rows = [
         ...boxTable.slice(0, indexRow),
         ...boxTable.slice(indexRow + 1)
       ];
+      this.putIndex(rows);
       this.setState({boxTable: rows});
     }
-    console.log(boxTable);
-    // if (boxTable.length < 1) {
-    //   console.log(1);
-    //   this.setState({displayRow: 'none'});
-    // }
+
+    if (boxTable.length === +(coordsY) || boxTable.length === 2) {
+      this.setState({ displayRow: 'none' });
+    }
   }
 
   onMouseEnterCell = (e) => {
@@ -194,7 +161,7 @@ class App extends Component {
   
   render() {
     const {cellSize} = this.props;
-    const {boxTable, coordsX, coordsY} = this.state;
+    const {boxTable, coordsX, coordsY, displayCol, displayRow} = this.state;
 
     const styledApp = {
       padding: `${cellSize + 4}px`
@@ -207,12 +174,12 @@ class App extends Component {
     const styledMinusCol = {
       top: 0,
       left: `${coordsX*(cellSize+2) + 3}px`,
-      display: this.state.displayCol
+      display: displayCol
     }
     const styledMinusRow = {
       top: `${coordsY*(cellSize+2) + 3}px`,
       left: 0,
-      display: this.state.displayRow
+      display: displayRow
     }
     const styledPlusCol = {
       top: `${cellSize + 5}px`,
@@ -226,13 +193,29 @@ class App extends Component {
     const colCount = boxTable.length ? boxTable[0].length : 0;
     const rowCount = boxTable.length;
 
+    let drowTable = [];
+    boxTable.forEach((row, i) => {
+      let newRow = row.map((cell, j) => {
+        return (
+          <div
+            className="cell"
+            style={{ width: `${cellSize}px`, height: `${cellSize}px` }}
+            data-idrow={i + 1}
+            data-idcol={cell.idcol}
+            key={`${i}${j}`}
+            onMouseEnter={(e) => { this.onMouseEnterCell(e) }} >
+          </div>
+        )
+      })
+      drowTable.push(newRow);
+    });
+
     return (
     <div className="app" style={styledApp}
       onMouseMove={(e) => {this.showMinus(e)}} >
       <div className = "table" 
-          style={{height: `${rowCount*52}px`, width: `${colCount*52}px` }}
-          >
-        {boxTable}
+          style={{height: `${rowCount*52}px`, width: `${colCount*52}px` }} >
+          {drowTable}
       </div>
       <Button 
         changeCountCell={() => {this.removeColumns()}} 
