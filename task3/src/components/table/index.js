@@ -1,41 +1,32 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Table extends Component {
+const Table = ({ cellSize, table }) => {
 
-  render() {
+  const colCount = table.length ? table[0].length : 0;
+  const rowCount = table.length;
 
-    const {boxTable, countCol, countRow, sizeCell, boxTest} = this.props;
-    console.log(countRow);
-    
-    let boxes = boxTable;
-
-    for (let i = 0; i < countRow; i++) {
-      boxes[i] = [];
-      for (let j = 0; j < countCol; j++) {
-        boxes[i].push(
-          <div
-            className="box-table" 
-            style={ {width: `${sizeCell}px`, height: `${sizeCell}px`, top: `${i*52+1}px`, left: `${j*52+1}px`}} 
-            idrow={i}
-            idcol={j}
-            key={`${i}${j}`}
-            onMouseEnter={(e) => {boxTest(e)}}
-            >
-          </div>
-        )
+  return (
+    <div className = "table" 
+      style={{height: `${rowCount*52}px`, width: `${colCount*52}px` }} >
+      {
+        table.map((row, i) => {
+          return (
+            row.map((cell, j) => {
+              return (
+                <div
+                  className="cell"
+                  style={{ width: `${cellSize}px`, height: `${cellSize}px`, backgroundColor: `${cell.background}` }}
+                  data-idrow={i + 1}
+                  data-idcol={j + 1}
+                  key={`${row[0].idRow}${cell.idCol}`} >
+                </div>
+              )
+            })
+          )
+        })
       }
-    }
-    // console.log(boxes);
-    // console.log(boxes.length);
-    // console.log(boxes[0]);
-
-    return (
-      <div className = "box-wrap" style={{height: `${boxes.length*52+2}px`, width: `${boxes[0].length*52+2}px` }}>
-        {boxes}
-      </div>
-    )
-  }
-
+    </div>
+  )
 }
 
 export default Table;
