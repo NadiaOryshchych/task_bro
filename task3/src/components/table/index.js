@@ -2,16 +2,12 @@ import React from 'react';
 
 const Table = ({ cellSize, table }) => {
 
-  const colCount = table.length ? table[0].length : 0;
-  const rowCount = table.length;
-
   return (
-    <div className = "table" 
-      style={{height: `${rowCount*(cellSize+2)}px`, width: `${colCount*(cellSize+2)}px` }} >
+    <div className = "table" >
       {
         table.map((row, i) => {
           return (
-            <div>
+            <div className="row">
               {
                 row.map((cell, j) => {
                   return (

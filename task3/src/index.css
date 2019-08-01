@@ -11,10 +11,12 @@
 }
 
 .table {
-  display: flex;
-  flex-wrap: wrap;
   padding: 1px;
   border: 1px solid #48aae6;
+}
+
+.row {
+  display: flex;
 }
 
 .cell {
