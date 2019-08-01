@@ -80,7 +80,6 @@ class App extends Component {
       }); 
       rows.push(newRow);
     });
-    // this.putIndex(rows);
     this.setState({ boxTable: rows });
   }
 
@@ -98,7 +97,6 @@ class App extends Component {
       });
     }
     rows.push(newRow);
-    // this.putIndex(rows);
     this.setState({ boxTable: rows });
   }
 
@@ -115,7 +113,6 @@ class App extends Component {
         ];
         rows.push(newRow);
       });
-      // this.putIndex(rows);
       this.setState({ boxTable: rows });
     }
 
@@ -132,7 +129,6 @@ class App extends Component {
         ...boxTable.slice(0, indexRow),
         ...boxTable.slice(indexRow + 1)
       ];
-      // this.putIndex(rows);
       this.setState({boxTable: rows});
     }
 

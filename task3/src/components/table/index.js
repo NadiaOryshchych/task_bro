@@ -7,7 +7,7 @@ const Table = ({ cellSize, table }) => {
       {
         table.map((row, i) => {
           return (
-            <div className="row">
+            <div className="row" key={i}>
               {
                 row.map((cell, j) => {
                   return (
