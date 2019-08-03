@@ -5,25 +5,21 @@ const Table = ({ cellSize, table }) => {
   return (
     <div className = "table" >
       {
-        table.map((row, i) => {
-          return (
-            <div className="row" key={i}>
-              {
-                row.map((cell, j) => {
-                  return (
-                    <div
-                      className="cell"
-                      style={{ width: `${cellSize}px`, height: `${cellSize}px`, backgroundColor: `${cell.background}` }}
-                      data-idrow={i + 1}
-                      data-idcol={j + 1}
-                      key={`${row[0].idRow}${cell.idCol}`} >
-                    </div>
-                  )
-                })
-              }
-            </div>
-          )
-        })
+        table.map((row, i) => (
+          <div className="row" key={i}>
+            {
+              row.map((cell, j) => (
+                <div
+                  className="cell"
+                  style={{ width: `${cellSize}px`, height: `${cellSize}px` }}
+                  data-idrow={i + 1}
+                  data-idcol={j + 1}
+                  key={`${row[0].idRow}${cell.idCol}`} >
+                </div>
+              ))
+            }
+          </div>
+        ))
       }
     </div>
   )

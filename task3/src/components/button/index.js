@@ -1,6 +1,7 @@
 import React from 'react';
+import cz from 'classnames';
 
-const Button = ({ changeCountCell, mouseOut, typeBtn, sizeBtn, classBtn, index, displayBtn }) => {
+const Button = ({ changeCountCell, mouseOut, typeBtn, sizeBtn, index, displayBtn }) => {
 
   const initialStyleBtn = {
     width: `${sizeBtn}px`,
@@ -12,47 +13,40 @@ const Button = ({ changeCountCell, mouseOut, typeBtn, sizeBtn, classBtn, index, 
     display: ''
   }
 
-  const installStyle = (style = initialStyleBtn) => {
-    switch (typeBtn) {
-      case 'minusCol':
-        return {
-          ...style,
-          top: 0,
-          left: `${index*(sizeBtn+2) + 3}px`,
-          display: displayBtn
-        };
-      case 'minusRow':
-        return {
-          ...style,
-          top: `${index*(sizeBtn+2) + 3}px`,
-          left: 0,
-          display: displayBtn
-        };
-      case 'plusCol':
-        return {
-          ...style,
-          top: `${sizeBtn + 5}px`,
-          right: 0
-        };
-      case 'plusRow':
-        return {
-          ...style,
-          bottom: 0,
-          left: `${sizeBtn + 5}px`
-        };
-      default:
-        return style;
+  const installStyle = {
+    minusCol: {
+      top: 0,
+      left: `${index*(sizeBtn+2) + 3}px`,
+      display: displayBtn
+    },
+    minusRow: {
+      top: `${index*(sizeBtn+2) + 3}px`,
+      left: 0,
+      display: displayBtn
+    },
+    plusCol: {
+      top: `${sizeBtn + 5}px`,
+      right: 0
+    },
+    plusRow: {
+      bottom: 0,
+      left: `${sizeBtn + 5}px`
     }
   }
 
-  const classListNew = ['button', ...classBtn].join(' ');
+  const installClassBtn = {
+    minusCol: ['minus minus-col'],
+    minusRow: ['minus minus-row'],
+    plusCol: ['plus plus-col'],
+    plusRow: ['plus plus-row']
+  }
 
   return <button 
             onClick={() => {changeCountCell()}} 
             onMouseOut={() => mouseOut()}
-            className={classListNew} 
+            className={cz('button', ...installClassBtn[typeBtn])} 
             data-index={index} 
-            style = { installStyle() } 
+            style = { {...initialStyleBtn, ...installStyle[typeBtn]} } 
           />
 }
 
