@@ -29,20 +29,11 @@ describe('Testing <App />', () => {
   // const table = shallow(<Table />); 
 
   it('renders three <Table /> components', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find(Table)).to.have.lengthOf(1);
-  });
-  
-  xit('testing App props', () => {
-    app.instance().render();
-    // expect(app).toMatchSnapshot();
-    expect(app.find('div.table > div.row')).toHaveLength(4)
+    expect(app.find(Table)).toHaveLength(1);
   });
 
-  xit('App has Table', () => {
-    app.instance().render();
-    // expect(app.contains(table)).toBe(true);
-    expect(app.state().contains(table)).toEqual(true);
+  it('testing height Table', () => {
+    expect(app.find('div.table > div.row')).toHaveLength(4);
   });
 
   // записую змінну
