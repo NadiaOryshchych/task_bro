@@ -50,7 +50,8 @@ class App extends Component {
     } else if (classList.contains('minus-row')) {
       displayMCol = 'none';
     } else if (classList.contains('app')) {
-      this.hideMinus();
+      displayMCol = 'none';
+      displayMRow = 'none';
     }
 
     this.setState({
@@ -59,23 +60,8 @@ class App extends Component {
       displayMinusRow: displayMRow,
       displayMinusCol: displayMCol
     });
-
-    // if (classList.contains('cell')) {
-    //   this.setState({
-    //     indexMinusCol: +(dataset.idcol),
-    //     indexMinusRow: +(dataset.idrow)
-    //   });
-    //   (boxTable.length > 1) ? this.setState({ displayMinusRow: 'flex' }) : this.setState({ displayMinusRow: 'none' });
-    //   (boxTable[0].length > 1) ? this.setState({ displayMinusCol: 'flex' }) : this.setState({ displayMinusCol: 'none' });
-    // } else if (classList.contains('minus-col')) {
-    //   this.setState({ displayMinusRow: 'none' });
-    // } else if (classList.contains('minus-row')) {
-    //   this.setState({ displayMinusCol: 'none' });
-    // } else if (classList.contains('app')) {
-    //   this.hideMinus();
-    // }
   }
-
+  
   hideMinus = () => {
     this.setState({ displayMinusRow: 'none' });
     this.setState({ displayMinusCol: 'none' });
@@ -111,8 +97,6 @@ class App extends Component {
     if (rowLength > 1) {
       let rows = boxTable.map(row => [...row.filter((сell, i) => i !== indexCol)]);
       const displayMinusCol = (rowLength === indexMinusCol || rowLength <= 2) ? 'none' : 'flex';
-
-      debugger;
       this.setState({ boxTable: rows, displayMinusCol }); 
     }
   }
