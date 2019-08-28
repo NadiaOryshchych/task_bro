@@ -111,6 +111,8 @@ class App extends Component {
     if (rowLength > 1) {
       let rows = boxTable.map(row => [...row.filter((сell, i) => i !== indexCol)]);
       const displayMinusCol = (rowLength === indexMinusCol || rowLength <= 2) ? 'none' : 'flex';
+
+      debugger;
       this.setState({ boxTable: rows, displayMinusCol }); 
     }
   }
@@ -170,6 +172,12 @@ class App extends Component {
       </div>
     );
   }
+}
+
+App.defaultProps = {
+  initialWidth: 4,
+  initialHeight: 4,
+  cellSize: 50
 }
 
 export default App;
