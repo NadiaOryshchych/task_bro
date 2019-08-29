@@ -2,12 +2,6 @@ import React, {Component} from 'react';
 import Table from '../Table';
 import Button from '../Button';
 
-// добавити претіер еслінт
-
-// яка версія eslint встановлена глобально
-
-// коли не обов'язково використовувати конструктор - почитати
-
 class App extends Component {
   
   createTable = () => {
@@ -108,7 +102,6 @@ class App extends Component {
 
     if (tableLength > 1) {
       let rows = boxTable.filter((row, i) => i !== indexRow);
-      // let rows = boxTable.filter((row, i) => row[i] !== row[indexRow]); 
       const displayMinusRow = (tableLength === indexMinusRow || tableLength <= 2) ? 'none' : 'flex'
       
       this.setState({ boxTable: rows, displayMinusRow });
