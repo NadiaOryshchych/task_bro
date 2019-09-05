@@ -8,7 +8,7 @@ describe('Testing <App />', () => {
   const randomWidth = Math.floor(Math.random() * (50 - 1)) + 50;
   const randomHeight = Math.floor(Math.random() * (40 - 1)) + 40;
   const app = mount(<App initialWidth={randomWidth} initialHeight={randomHeight} />);
-  
+    
   describe('render App', () => {    
     console.log(randomWidth, randomHeight, app);
     it('render without crashing', () => {

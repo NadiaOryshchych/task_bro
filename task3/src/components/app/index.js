@@ -1,22 +1,21 @@
-import React, {Component} from 'react';
-import Table from '../Table';
-import Button from '../Button';
+import React, { Component } from 'react'
+import Table from '../Table'
+import Button from '../Button'
 
 class App extends Component {
-  
   createTable = () => {
-    const { initialWidth, initialHeight } = this.props;
-    let boxes = [];
+    const { initialWidth, initialHeight } = this.props
+    let boxes = []
     for (let i = 0; i < initialHeight; i++) {
-      boxes[i] = [];
+      boxes[i] = []
       for (let j = 0; j < initialWidth; j++) {
         boxes[i].push({
           idRow: i + 1,
-          idCol: j + 1
+          idCol: j + 1,
         })
       }
     }
-    return boxes;
+    return boxes
   }
 
   state = {
@@ -24,137 +23,151 @@ class App extends Component {
     indexMinusCol: 1,
     indexMinusRow: 1,
     displayMinusCol: 'none',
-    displayMinusRow: 'none'
+    displayMinusRow: 'none',
   }
 
-  showMinus = (e) => {
-    const { boxTable } = this.state;
-    const target = e.target;
-    const classList = target.classList;
-    const dataset = target.dataset;
-    
-    let displayMRow = 'mRow';
-    let displayMCol = 'mCol';
+  showMinus = e => {
+    const { boxTable } = this.state
+    const target = e.target
+    const classList = target.classList
+    const dataset = target.dataset
+
+    let displayMRow = 'mRow'
+    let displayMCol = 'mCol'
 
     if (classList.contains('cell')) {
-      (boxTable.length > 1) ? displayMRow = 'flex': displayMRow = 'none';
-      (boxTable[0].length > 1) ? displayMCol = 'flex': displayMCol = 'none';
+      boxTable.length > 1 ? (displayMRow = 'flex') : (displayMRow = 'none')
+      boxTable[0].length > 1 ? (displayMCol = 'flex') : (displayMCol = 'none')
     } else if (classList.contains('minus-col')) {
-      displayMRow = 'none';
+      displayMRow = 'none'
     } else if (classList.contains('minus-row')) {
-      displayMCol = 'none';
+      displayMCol = 'none'
     } else if (classList.contains('app')) {
-      displayMCol = 'none';
-      displayMRow = 'none';
+      displayMCol = 'none'
+      displayMRow = 'none'
     }
 
     this.setState({
-      indexMinusCol: dataset.idcol ? +(dataset.idcol) : this.state.indexMinusCol,
-      indexMinusRow: dataset.idrow ? +(dataset.idrow) : this.state.indexMinusRow,
+      indexMinusCol: dataset.idcol ? +dataset.idcol : this.state.indexMinusCol,
+      indexMinusRow: dataset.idrow ? +dataset.idrow : this.state.indexMinusRow,
       displayMinusRow: displayMRow,
-      displayMinusCol: displayMCol
-    });
+      displayMinusCol: displayMCol,
+    })
   }
-  
+
   hideMinus = () => {
-    this.setState({ displayMinusRow: 'none' });
-    this.setState({ displayMinusCol: 'none' });
+    this.setState({ displayMinusRow: 'none' })
+    this.setState({ displayMinusCol: 'none' })
   }
 
   appendColumns = () => {
-    const { boxTable } = this.state;
-    const lastColIndex = boxTable[0][boxTable[0].length - 1].idCol;
-    const newTable = boxTable.map((row, i) => ([...row, {
-      idRow: i + 1,
-      idCol: lastColIndex + 1
-    }]));
-    this.setState({ boxTable: newTable });
+    const { boxTable } = this.state
+    const lastColIndex = boxTable[0][boxTable[0].length - 1].idCol
+    const newTable = boxTable.map((row, i) => [
+      ...row,
+      {
+        idRow: i + 1,
+        idCol: lastColIndex + 1,
+      },
+    ])
+    this.setState({ boxTable: newTable })
   }
 
   appendRows = () => {
-    const { boxTable } = this.state;
-    const lastRow = boxTable[boxTable.length - 1];
-    const newRow = lastRow.map((item) => {
-      return ({
+    const { boxTable } = this.state
+    const lastRow = boxTable[boxTable.length - 1]
+    const newRow = lastRow.map(item => {
+      return {
         idRow: item.idRow + 1,
-        idCol: item.idCol
-      })
-    });
-    this.setState({ boxTable: [...boxTable, newRow] });
+        idCol: item.idCol,
+      }
+    })
+    this.setState({ boxTable: [...boxTable, newRow] })
   }
 
   removeColumns = () => {
-    const { boxTable, indexMinusCol } = this.state;
-    const rowLength = boxTable[0].length;
-    const indexCol = indexMinusCol - 1;
+    const { boxTable, indexMinusCol } = this.state
+    const rowLength = boxTable[0].length
+    const indexCol = indexMinusCol - 1
 
     if (rowLength > 1) {
-      let rows = boxTable.map(row => [...row.filter((сell, i) => i !== indexCol)]);
-      const displayMinusCol = (rowLength === indexMinusCol || rowLength <= 2) ? 'none' : 'flex';
-      this.setState({ boxTable: rows, displayMinusCol }); 
+      let rows = boxTable.map(row => [
+        ...row.filter((сell, i) => i !== indexCol),
+      ])
+      const displayMinusCol =
+        rowLength === indexMinusCol || rowLength <= 2 ? 'none' : 'flex'
+      this.setState({ boxTable: rows, displayMinusCol })
     }
   }
 
   removeRows = () => {
-    const { boxTable, indexMinusRow } = this.state;
-    const tableLength = boxTable.length;
-    const indexRow = indexMinusRow-1;
+    const { boxTable, indexMinusRow } = this.state
+    const tableLength = boxTable.length
+    const indexRow = indexMinusRow - 1
 
     if (tableLength > 1) {
-      let rows = boxTable.filter((row, i) => i !== indexRow);
-      const displayMinusRow = (tableLength === indexMinusRow || tableLength <= 2) ? 'none' : 'flex'
-      
-      this.setState({ boxTable: rows, displayMinusRow });
+      let rows = boxTable.filter((row, i) => i !== indexRow)
+      const displayMinusRow =
+        tableLength === indexMinusRow || tableLength <= 2 ? 'none' : 'flex'
+
+      this.setState({ boxTable: rows, displayMinusRow })
     }
   }
-  
+
   render() {
-    const { cellSize } = this.props; 
-    const { boxTable, indexMinusCol, indexMinusRow, displayMinusCol, displayMinusRow } = this.state;
+    const { cellSize } = this.props
+    const {
+      boxTable,
+      indexMinusCol,
+      indexMinusRow,
+      displayMinusCol,
+      displayMinusRow,
+    } = this.state
 
     return (
-      <div className="app" style={{padding: `${cellSize + 4}px`}} onMouseMove={this.showMinus} >
-        <Table 
-          cellSize={cellSize} 
-          table={boxTable}
-        />
-        <Button 
-          changeCountCell={this.removeColumns} 
+      <div
+        className="app"
+        style={{ padding: `${cellSize + 4}px` }}
+        onMouseMove={this.showMinus}
+      >
+        <Table cellSize={cellSize} table={boxTable} />
+        <Button
+          changeCountCell={this.removeColumns}
           mouseOut={this.hideMinus}
           typeBtn={'minusCol'}
-          sizeBtn={cellSize} 
-          index={indexMinusCol} 
+          sizeBtn={cellSize}
+          index={indexMinusCol}
           displayBtn={displayMinusCol}
         />
-        <Button 
-          changeCountCell={this.removeRows} 
+        <Button
+          changeCountCell={this.removeRows}
           mouseOut={this.hideMinus}
           typeBtn={'minusRow'}
-          sizeBtn={cellSize} 
-          index={indexMinusRow} 
+          sizeBtn={cellSize}
+          index={indexMinusRow}
           displayBtn={displayMinusRow}
         />
-        <Button 
-          changeCountCell={this.appendColumns} 
+        <Button
+          changeCountCell={this.appendColumns}
           mouseOut={this.hideMinus}
           typeBtn={'plusCol'}
-          sizeBtn={cellSize} 
+          sizeBtn={cellSize}
         />
-        <Button 
-          changeCountCell={this.appendRows} 
+        <Button
+          changeCountCell={this.appendRows}
           mouseOut={this.hideMinus}
           typeBtn={'plusRow'}
-          sizeBtn={cellSize} 
+          sizeBtn={cellSize}
         />
       </div>
-    );
+    )
   }
 }
 
 App.defaultProps = {
   initialWidth: 4,
   initialHeight: 4,
-  cellSize: 50
+  cellSize: 50,
 }
 
-export default App;
+export default App
